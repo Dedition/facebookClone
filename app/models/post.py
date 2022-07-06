@@ -1,6 +1,7 @@
 from .db import db
 import datetime
 
+
 class Post(db.Model):
     __tablename__ = 'posts'
 
@@ -11,7 +12,8 @@ class Post(db.Model):
     edited = db.Column(db.Boolean, default=False)
 
     user = db.relationship('User', back_populates='posts', lazy=True)
-    comments = db.relationship('Comment', back_populates='post', lazy=True, cascade='all, delete-orphan')
+    comments = db.relationship(
+        'Comment', back_populates='post', lazy=True, cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
