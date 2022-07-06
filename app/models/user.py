@@ -8,8 +8,18 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    avatar = db.Column(db.String(255), nullable=True)
+    firstname = db.Column(db.String(40), nullable=False)
+    lastname = db.Column(db.String(40), nullable=False)
+    birthday = db.Column(db.DateTime, nullable=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    banner = db.Column(db.String(255), nullable=True)
+    bio = db.Column(db.Text, nullable=True)
+    online = db.Column(db.Boolean, default=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    posts = db.relationship('Post', back_populates='user', lazy=True)
+    comments = db.relationship('Comment', back_populates='user', lazy=True)
 
     @property
     def password(self):
@@ -26,5 +36,14 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'avatar': self.avatar,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
+            'birthday': self.birthday,
+            'email': self.email,
+            'banner': self.banner,
+            'bio': self.bio,
+            'online': self.online,
+            'posts': [post.to_dict() for post in self.posts],
+            'comments': [comment.to_dict() for comment in self.comments]
         }
