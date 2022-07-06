@@ -6,53 +6,21 @@ class Friend(db.Model):
     __tablename__ = 'friends'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    friend_id = db.Column(
-        db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_a = db.Coluumn(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_b = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    status = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-    user = db.relationship('User', back_populates='friends', lazy=True)
-    friend = db.relationship(
-        'User', back_populates='friends_received', lazy=True)
+    sender_id = db.Column(db.Integer, foreign_keys={user_a}, nullable=False)
+    receiver_id = db.Column(db.Integer, foreign_keys={user_b}, nullable=False)
 
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
-            'friend_id': self.friend_id,
-            'user': self.user.to_dict(),
-            'friend': self.friend.to_dict(),
+            'user_a': self.user_a,
+            'user_b': self.user_b,
+            'status': self.status,
             'created_at': self.created_at,
-            'updated_at': self.updated_at,
+            'sender_id': self.sender_id,
+            'receiver_id': self.receiver_id
         }
-
-    def __repr__(self):
-        return '<Friend %r>' % self.id
-
-    def __str__(self):
-        return 'Friend %r' % self.id
-
-    def __eq__(self, other):
-        return self.id == other.id
-
-    def __hash__(self):
-        return hash(self.id)
-
-    def __ne__(self, other):
-        return self.id != other.id
-
-    def __lt__(self, other):
-        return self.id < other.id
-
-    def __le__(self, other):
-        return self.id <= other.id
-
-    def __gt__(self, other):
-        return self.id > other.id
-
-    def __ge__(self, other):
-        return self.id >= other.id
-
-    def __cmp__(self, other):
-        return self.id - other.id
