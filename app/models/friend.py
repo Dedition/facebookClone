@@ -6,7 +6,7 @@ class Friend(db.Model):
     __tablename__ = 'friends'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_a = db.Coluumn(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_a = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user_b = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     status = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
