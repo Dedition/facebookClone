@@ -4,17 +4,9 @@ from ..forms.post_form import CreatePostForm, EditPostForm
 
 post_routes = Blueprint('post_routes', __name__)
 
-
-@post_routes.route('/')
-def get_posts():
-    posts = Post.query.all()
-    return {'posts': [post.to_dict() for post in posts]}
-
-
-@post_routes.route('/<int:post_id>')
-def get_all_users_posts(id):
-    posts = Post.query.filter_by(user_id=id).all()
-    return {'posts': [post.to_dict() for post in posts]}
+# TODO ——————————————————————————————————————————————————————————————————————————————————
+# *                                  CREATE
+# TODO ——————————————————————————————————————————————————————————————————————————————————
 
 
 @post_routes.route('/', methods=['POST'])
@@ -45,6 +37,27 @@ def create_post():
     return {'message': 'Invalid request'}, 400
 
 
+# TODO ——————————————————————————————————————————————————————————————————————————————————
+# *                                   READ
+# TODO ——————————————————————————————————————————————————————————————————————————————————
+
+
+@post_routes.route('/')
+def get_posts():
+    posts = Post.query.all()
+    return {'posts': [post.to_dict() for post in posts]}
+
+
+@post_routes.route('/<int:post_id>')
+def get_all_users_posts(id):
+    posts = Post.query.filter_by(user_id=id).all()
+    return {'posts': [post.to_dict() for post in posts]}
+
+
+# TODO ——————————————————————————————————————————————————————————————————————————————————
+# *                                  UPDATE
+# TODO ——————————————————————————————————————————————————————————————————————————————————
+
 @post_routes.route('/<int:id>', methods=['PUT'])
 def edit_post(id):
     form = EditPostForm()
@@ -63,6 +76,11 @@ def edit_post(id):
         return form.errors, 400
 
     return {'message': 'Invalid request'}, 400
+
+
+# TODO ——————————————————————————————————————————————————————————————————————————————————
+# *                                  DELETE
+# TODO ——————————————————————————————————————————————————————————————————————————————————
 
 
 @post_routes.route('/<int:id>', methods=['DELETE'])
