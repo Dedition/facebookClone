@@ -27,7 +27,7 @@ def upgrade():
                         length=40), nullable=False),
                     sa.Column('lastname', sa.String(
                         length=40), nullable=False),
-                    sa.Column('birthday', sa.DateTime(), nullable=True),
+                    sa.Column('birthday', sa.Date(), nullable=True),
                     sa.Column('email', sa.String(length=255), nullable=False),
                     sa.Column('banner', sa.String(length=255), nullable=True),
                     sa.Column('bio', sa.Text(), nullable=True),

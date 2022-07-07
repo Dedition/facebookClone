@@ -24,14 +24,14 @@ const SignUpForm = ({ setIsOpen }) => {
   let date = new Date();
 
   const [month, setMonth] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[0]);
-  // console.log(month);
+  console.log(month);
 
 
   const [day, setDay] = useState("1");
-  // console.log(day);
+  console.log(day);
 
   const [year, setYear] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[2]);
-  // console.log(year);
+  console.log(year);
 
 
   const onSignUp = async (e) => {

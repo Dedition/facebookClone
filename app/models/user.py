@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
                        default='https://facebookclonebucket2.s3.amazonaws.com/defaultfb.png')
     firstname = db.Column(db.String(40), nullable=False)
     lastname = db.Column(db.String(40), nullable=False)
-    birthday = db.Column(db.DateTime, nullable=True)
+    birthday = db.Column(db.Date, nullable=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     banner = db.Column(db.String(255), nullable=True)
     bio = db.Column(db.Text, nullable=True)
