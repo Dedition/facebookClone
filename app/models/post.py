@@ -10,6 +10,8 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.String(255), nullable=True)
     edited = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     user = db.relationship('User', back_populates='posts', lazy=True)
     comments = db.relationship(
@@ -23,5 +25,7 @@ class Post(db.Model):
             'image_url': self.image_url,
             'edited': self.edited,
             'user': self.user.to_dict(),
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
             'comments': [comment.to_dict() for comment in self.comments]
         }

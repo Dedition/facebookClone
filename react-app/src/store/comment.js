@@ -1,20 +1,20 @@
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-// TODO                                 Action
+// TODO                                     Action
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-const ADD = "POST/ADD";
-const LOAD = "POST/LOAD";
-const UPDATE = "POST/UPDATE";
-const REMOVE = "POST/REMOVE";
+const CREATE_COMMENT = "COMMENT/CREATE";
+const LOAD_COMMENTS = "COMMENT/LOAD";
+const UPDATE_COMMENT = "COMMENT/UPDATE";
+const REMOVE_COMMENT = "COMMENT/REMOVE";
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Action Creators
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-const addPost = (post) => ({ type: ADD, post });
-const loadPosts = (posts) => ({ type: LOAD, posts });
-const updatePost = (post) => ({ type: UPDATE, post });
-const removePost = (postId) => ({ type: REMOVE, postId });
+const addComment = (comment) => ({ type: CREATE_COMMENT, comment });
+const loadComments = (comments) => ({ type: LOAD_COMMENTS, comments });
+const updateComment = (comment) => ({ type: UPDATE_COMMENT, comment });
+const removeComment = (commentId) => ({ type: REMOVE_COMMENT, commentId });
 
 // *    ——————————————————————————————————————————————————————————————————————————————————
 // *                                    Thunks
@@ -24,60 +24,59 @@ const removePost = (postId) => ({ type: REMOVE, postId });
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const createPost = (post) => async (dispatch) => {
-    const response = await fetch("/api/posts", {
+export const createComment = (comment) => async (dispatch) => {
+    const response = await fetch("/api/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post),
+        body: JSON.stringify(comment),
     });
 
     if (response.ok) {
-        const newPost = await response.json();
-        dispatch(addPost(newPost));
+        const newComment = await response.json();
+        dispatch(addComment(newComment));
     }
-};
+}
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 READ
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const getPosts = () => async (dispatch) => {
-    const response = await fetch("/api/posts");
+export const getComments = () => async (dispatch) => {
+    const response = await fetch("/api/comments");
     if (response.ok) {
-        const posts = await response.json();
-        dispatch(loadPosts(posts));
+        const comments = await response.json();
+        dispatch(loadComments(comments));
     }
-};
+}
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 UPDATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const updatePostById = (post) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${post.postId}`, {
+export const editComment = (comment) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${comment.commentId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post),
+        body: JSON.stringify(comment),
     });
 
     if (response.ok) {
-        const updatedPost = await response.json();
-        dispatch(updatePost(updatedPost));
+        const updatedComment = await response.json();
+        dispatch(updateComment(updatedComment));
     }
-};
-
+}
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 DELETE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const deletePostById = (postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`, {
+export const deleteComment = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "DELETE",
     });
 
     if (response.ok) {
-        const previousPost = await response.json();
-        dispatch(removePost(postId));
+        const deletedComment = await response.json();
+        dispatch(removeComment(deletedComment));
     }
-};
+}

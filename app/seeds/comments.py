@@ -5,8 +5,10 @@ def seed_comments():
     # Create a list of dictionaries
     comment1 = Comment(user_id=1, post_id=1,
                        content='This is the first comment')
+
     comment2 = Comment(user_id=1, post_id=1,
                        content='This is the second comment')
+
     comment3 = Comment(user_id=1, post_id=1,
                        content='This is the third comment')
 
