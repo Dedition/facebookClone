@@ -1,6 +1,7 @@
 import LoginForm from '../auth/LoginForm';
 import SignUpModal from '../auth/SignUpModal';
 import { ExternalLink } from 'react-external-link';
+import "./SignupPage.css";
 
 
 function SignupPage() {
