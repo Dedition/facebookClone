@@ -87,7 +87,7 @@ export const deleteComment = (commentId) => async (dispatch) => {
 
 const initialState = {};
 
-export const function commentReducer(state = initialState, action) {
+export default function commentReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case CREATE_COMMENT:
