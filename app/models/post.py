@@ -13,9 +13,9 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-    user = db.relationship('User', back_populates='posts', lazy=True)
+    user = db.relationship('User', back_populates='posts')
     comments = db.relationship(
-        'Comment', back_populates='post', lazy=True, cascade='all, delete-orphan')
+        'Comment', back_populates='post', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
@@ -27,5 +27,5 @@ class Post(db.Model):
             'user': self.user.to_dict(),
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'comments': [comment.to_dict() for comment in self.comments]
         }
+        # 'comments': [comment.to_dict() for comment in self.comments],

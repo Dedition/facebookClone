@@ -19,8 +19,8 @@ class User(db.Model, UserMixin):
     online = db.Column(db.Boolean, default=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    posts = db.relationship('Post', back_populates='user', lazy=True)
-    comments = db.relationship('Comment', back_populates='user', lazy=True)
+    posts = db.relationship('Post', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
 
     @property
     def password(self):
@@ -45,6 +45,4 @@ class User(db.Model, UserMixin):
             'banner': self.banner,
             'bio': self.bio,
             'online': self.online,
-            'posts': [post.to_dict() for post in self.posts],
-            'comments': [comment.to_dict() for comment in self.comments]
         }
