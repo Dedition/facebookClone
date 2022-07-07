@@ -1,5 +1,5 @@
 import LoginForm from '../auth/LoginForm';
-// import SignUpModal from '../auth/SignUpModal';
+import SignUpModal from '../auth/SignUpModal';
 import { ExternalLink } from 'react-external-link';
 
 
@@ -17,7 +17,7 @@ function SignupPage() {
                     </div>
                     <div className="signup__login__comp">
                         <LoginForm />
-                        {/* <SignUpModal /> */}
+                        <SignUpModal />
                     </div>
                 </div>
             </div>

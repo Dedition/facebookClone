@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { months, years } from './utils';
 import moment from 'moment';
 
-const SignUpForm = () => {
+const SignUpForm = ({ setIsOpen }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -22,14 +23,15 @@ const SignUpForm = () => {
 
   let date = new Date();
 
-  const [month, setMonth] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(", ")[0]).split(" ")[0];
-  console.log(month);
+  const [month, setMonth] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[0]);
+  // console.log(month);
 
-  const [day, setDay] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(", ")[0]).split(" ")[1];
-  console.log(day);
 
-  const [year, setYear] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(", ")[0]).split(" ")[2];
-  console.log(year);
+  const [day, setDay] = useState("1");
+  // console.log(day);
+
+  const [year, setYear] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[2]);
+  // console.log(year);
 
 
   const onSignUp = async (e) => {
@@ -37,59 +39,47 @@ const SignUpForm = () => {
     const err = [];
 
     let birthday = new Date(`${month} ${day}, ${year}`);
-    birthday = moment(birthday).format("YYYY-MM-DD");
+    console.log(month, day, year);
+    birthday = birthday.toISOString();
+    console.log(birthday);
 
-
-    if (username === '') {
-      err.push('Username is required');
+    if (username.length < 20 && firstName.length < 20 && lastName.length < 20 && email.length < 50 && password.length < 50 && repeatPassword.length < 50) {
+      if (password === repeatPassword) {
+        const user = await dispatch(signUp(username, firstName, lastName, email, password, birthday));
+        if (user) {
+          history.push('/login');
+          setIsOpen(false);
+        }
+      } else {
+        err.push('Passwords do not match');
+        setErrors(err);
+      }
+    } else if (!username || !firstName || !lastName || !email || !password || !repeatPassword) {
+      err.push('Please fill out all fields');
+      setErrors(err);
     } else if (username.length > 20) {
       err.push('Username must be less than 20 characters');
-    } else if (firstName === '') {
-      err.push('First name is required');
+      setErrors(err);
     } else if (firstName.length > 20) {
       err.push('First name must be less than 20 characters');
-    } else if (lastName === '') {
-      err.push('Last name is required');
+      setErrors(err);
     } else if (lastName.length > 20) {
       err.push('Last name must be less than 20 characters');
-    } else if (email === '') {
-      err.push('Email is required');
+      setErrors(err);
     } else if (email.length > 50) {
       err.push('Email must be less than 50 characters');
-    } else if (birthday === '') {
-      err.push('Birthday is required');
-    } else if (password === '') {
-      err.push('Password is required');
-    } else if (repeatPassword === '') {
-      err.push('Repeat password is required');
-    } else if (password !== repeatPassword) {
-      err.push('Passwords do not match');
-    } else if (password.length < 8) {
-      err.push('Password must be at least 8 characters');
-    } else if (password.length > 128) {
-      err.push('Password must be less than 128 characters');
-    } else if (password.search(/[a-z]/i) < 0) {
-      err.push('Password must contain at least one lowercase letter');
-    } else if (password.search(/[A-Z]/i) < 0) {
-      err.push('Password must contain at least one uppercase letter');
-    } else if (password.search(/[0-9]/) < 0) {
-      err.push('Password must contain at least one number');
-    } else if (password.search(/[!@#$%^&*]/) < 0) {
-      err.push('Password must contain at least one special character');
-    } else if (password.search(/[a-zA-Z0-9!@#$%^&*]/) === 0) {
-      err.push('Password must contain at least one letter and number');
+      setErrors(err);
+    } else if (password.length > 50) {
+      err.push('Password must be less than 50 characters');
+      setErrors(err);
+    } else if (repeatPassword.length > 50) {
+      err.push('Repeat password must be less than 50 characters');
+      setErrors(err);
     } else {
-      dispatch(signUp(username, firstName, lastName, email, birthday, password));
-      history.push('/');
+      err.push('Please fill out all fields');
+      setErrors(err);
     }
   }
-  //   if (password === repeatPassword) {
-  //     const data = await dispatch(signUp(username, email, password));
-  //     if (data) {
-  //       setErrors(data)
-  //     }
-  //   }
-  // };
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -153,6 +143,7 @@ const SignUpForm = () => {
               <input
                 type='text'
                 name='username'
+                placeholder='Username'
                 onChange={updateUsername}
                 value={username}
               ></input>
@@ -217,112 +208,54 @@ const SignUpForm = () => {
 
             </div>
 
-            <div>
-              <label>Date of birth</label>
-              <select className='birthday__input'
-                onChange={updateDay}>
-                <option value='01'>01</option>
-                <option value='02'>02</option>
-                <option value='03'>03</option>
-                <option value='04'>04</option>
-                <option value='05'>05</option>
-                <option value='06'>06</option>
-                <option value='07'>07</option>
-                <option value='08'>08</option>
-                <option value='09'>09</option>
-                <option value='10'>10</option>
-                <option value='11'>11</option>
-                <option value='12'>12</option>
-                <option value='13'>13</option>
-                <option value='14'>14</option>
-                <option value='15'>15</option>
-                <option value='16'>16</option>
-                <option value='17'>17</option>
-                <option value='18'>18</option>
-                <option value='19'>19</option>
-                <option value='20'>20</option>
-                <option value='21'>21</option>
-                <option value='22'>22</option>
-                <option value='23'>23</option>
-                <option value='24'>24</option>
-                <option value='25'>25</option>
-                <option value='26'>26</option>
-                <option value='27'>27</option>
-                <option value='28'>28</option>
-                <option value='29'>29</option>
-                <option value='30'>30</option>
-                <option value='31'>31</option>
+            <span className="birthday">Birthday</span>
+            <div className="create__account__input__name__container">
+              <select
+                className="create__birthday__input"
+                value={month}
+                onChange={updateMonth}
+                required
+              >
+                {months.map((month) => {
+                  return (
+                    <option value={month} key={month}>
+                      {month}
+                    </option>
+                  );
+                })}
               </select>
-              <select className='birthday__input'
-                onChange={updateMonth}>
-                <option value='01'>01</option>
-                <option value='02'>02</option>
-                <option value='03'>03</option>
-                <option value='04'>04</option>
-                <option value='05'>05</option>
-                <option value='06'>06</option>
-                <option value='07'>07</option>
-                <option value='08'>08</option>
-                <option value='09'>09</option>
-                <option value='10'>10</option>
-                <option value='11'>11</option>
-                <option value='12'>12</option>
-                <select className='birthday__input'
-                  onChange={updateYear}>
-                  <option value='2022'>2022</option>
-                  <option value='2021'>2021</option>
-                  <option value='2020'>2020</option>
-                  <option value='2019'>2019</option>
-                  <option value='2018'>2018</option>
-                  <option value='2017'>2017</option>
-                  <option value='2016'>2016</option>
-                  <option value='2015'>2015</option>
-                  <option value='2014'>2014</option>
-                  <option value='2013'>2013</option>
-                  <option value='2012'>2012</option>
-                  <option value='2011'>2011</option>
-                  <option value='2010'>2010</option>
-                  <option value='2009'>2009</option>
-                  <option value='2008'>2008</option>
-                  <option value='2007'>2007</option>
-                  <option value='2006'>2006</option>
-                  <option value='2005'>2005</option>
-                  <option value='2004'>2004</option>
-                  <option value='2003'>2003</option>
-                  <option value='2002'>2002</option>
-                  <option value='2001'>2001</option>
-                  <option value='2000'>2000</option>
-                  <option value='1999'>1999</option>
-                  <option value='1998'>1998</option>
-                  <option value='1997'>1997</option>
-                  <option value='1996'>1996</option>
-                  <option value='1995'>1995</option>
-                  <option value='1994'>1994</option>
-                  <option value='1993'>1993</option>
-                  <option value='1992'>1992</option>
-                  <option value='1991'>1991</option>
-                  <option value='1990'>1990</option>
-                  <option value='1989'>1989</option>
-                  <option value='1988'>1988</option>
-                  <option value='1987'>1987</option>
-                  <option value='1986'>1986</option>
-                  <option value='1985'>1985</option>
-                  <option value='1984'>1984</option>
-                  <option value='1983'>1983</option>
-                  <option value='1982'>1982</option>
-                  <option value='1981'>1981</option>
-                  <option value='1980'>1980</option>
-                  <option value='1979'>1979</option>
-                  <option value='1978'>1978</option>
-                  <option value='1977'>1977</option>
-                  <option value='1976'>1976</option>
-                  <option value='1975'>1975</option>
-                  <option value='1974'>1974</option>
-                  <option value='1973'>1973</option>
-                </select>
+              <select
+                className="create__birthday__input"
+                value={day}
+                onChange={updateDay}
+                required
+              >
+                {Array.apply(null, Array(31)).map(function (ele, i) {
+                  return (
+                    <option value={(i += 1)} key={i}>
+                      {i}
+                    </option>
+                  );
+                })}
+              </select>
+              <select
+                className="create__birthday__input"
+                value={year}
+                onChange={updateYear}
+                required
+              >
+                {years.map((year) => {
+                  return (
+                    <option value={year} key={year}>
+                      {year}
+                    </option>
+                  );
+                })}
               </select>
             </div>
-            <button type='submit'>Sign Up</button>
+            <div className='create__account__button__container'>
+              <button type='submit' className='create__account__submit-button'>Sign Up</button>
+            </div>
           </form>
         </div>
       </div>

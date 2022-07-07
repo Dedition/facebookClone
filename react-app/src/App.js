@@ -9,6 +9,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import TestRender from './components/testRender/test';
+// import SignUpModal from './components/auth/SignupModal';
+import SignupPage from './components/SignupPage/SignupPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,13 +29,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ProtectedRoute><NavBar /></ProtectedRoute>
+      {/* <ProtectedRoute><NavBar /></ProtectedRoute> */}
       <Switch>
-        <Route exact path="/login" component={LoginForm} />
+        {/* <Route exact path="/login" component={LoginForm} /> */}
 
-        <Route exact path="/test" component={TestRender} />
+        {/* <Route exact path="/test" component={TestRender} /> */}
 
-        <Route exact path="/signup" component={SignUpForm} />
+        <Route path="/signup" component={SignupPage} />
       </Switch>
     </BrowserRouter>
   );
