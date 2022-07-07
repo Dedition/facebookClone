@@ -80,3 +80,36 @@ export const deleteComment = (commentId) => async (dispatch) => {
         dispatch(removeComment(deletedComment));
     }
 }
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 Reducer
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+const initialState = {};
+
+export const function commentReducer(state = initialState, action) {
+    let newState;
+    switch (action.type) {
+        case CREATE_COMMENT:
+            newState = { ...state };
+            newState[action.comment.commentId] = action.comment;
+            return newState;
+        case LOAD_COMMENTS:
+            newState = { ...state };
+            action.comments.forEach((comment) => {
+                newState[comment.commentId] = comment;
+            }
+            return newState;
+        case UPDATE_COMMENT:
+            newState = { ...state };
+            const updatedComment = action.comment;
+            newState[updatedComment.commentId] = updatedComment;
+            return newState;
+        case REMOVE_COMMENT:
+            newState = { ...state };
+            delete newState[action.commentId];
+            return newState;
+        default:
+            return state;
+    }
+}
