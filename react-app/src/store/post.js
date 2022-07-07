@@ -81,3 +81,38 @@ export const deletePostById = (postId) => async (dispatch) => {
         dispatch(removePost(postId));
     }
 };
+
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 Reducer
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+const initialState = {};
+
+export default function postsReducer(state = initialState, action) {
+    let newState;
+    switch (action.type) {
+        case ADD:
+            newState = { ...state };
+            const newPost = action.post;
+            newState[newPost.postId] = newPost;
+            return newState;
+        case LOAD:
+            newState = { ...state };
+            action.posts.forEach((post) => {
+                newState[post.postId] = post;
+            });
+            return newState;
+        case UPDATE:
+            newState = { ...state };
+            const updatedPost = action.post;
+            newState[updatedPost.postId] = updatedPost;
+            return newState;
+        case REMOVE:
+            newState = { ...state };
+            delete newState[action.postId];
+            return newState;
+        default:
+            return state;
+    }
+}
