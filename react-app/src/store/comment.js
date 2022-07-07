@@ -34,6 +34,7 @@ export const createComment = (comment) => async (dispatch) => {
     if (response.ok) {
         const newComment = await response.json();
         dispatch(addComment(newComment));
+        return newComment;
     }
 }
 
@@ -46,6 +47,7 @@ export const getComments = () => async (dispatch) => {
     if (response.ok) {
         const comments = await response.json();
         dispatch(loadComments(comments));
+        return comments;
     }
 }
 
@@ -63,6 +65,7 @@ export const editComment = (comment) => async (dispatch) => {
     if (response.ok) {
         const updatedComment = await response.json();
         dispatch(updateComment(updatedComment));
+        return updatedComment;
     }
 }
 
@@ -78,6 +81,7 @@ export const deleteComment = (commentId) => async (dispatch) => {
     if (response.ok) {
         const deletedComment = await response.json();
         dispatch(removeComment(deletedComment));
+        return deletedComment;
     }
 }
 
@@ -96,10 +100,11 @@ export default function commentReducer(state = initialState, action) {
             return newState;
         case LOAD_COMMENTS:
             newState = { ...state };
-            action.comments.forEach((comment) => {
+            const comments = action.comments.comments
+            comments.forEach((comment) => {
                 newState[comment.commentId] = comment;
             });
-            return newState;
+            return { ...comments };
         case UPDATE_COMMENT:
             newState = { ...state };
             const updatedComment = action.comment;

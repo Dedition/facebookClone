@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import TestRender from './components/testRender/test';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,6 +30,8 @@ function App() {
       <ProtectedRoute><NavBar /></ProtectedRoute>
       <Switch>
         <Route exact path="/login" component={LoginForm} />
+
+        <Route exact path="/test" component={TestRender} />
       </Switch>
     </BrowserRouter>
   );

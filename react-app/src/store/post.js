@@ -43,9 +43,11 @@ export const createPost = (post) => async (dispatch) => {
 
 export const getPosts = () => async (dispatch) => {
     const response = await fetch("/api/posts");
+
     if (response.ok) {
         const posts = await response.json();
         dispatch(loadPosts(posts));
+        return posts;
     }
 };
 
@@ -99,10 +101,11 @@ export default function postsReducer(state = initialState, action) {
             return newState;
         case LOAD:
             newState = { ...state };
-            action.posts.forEach((post) => {
+            const posts = action.posts.posts;
+            posts.forEach((post) => {
                 newState[post.postId] = post;
             });
-            return newState;
+            return { ...posts };
         case UPDATE:
             newState = { ...state };
             const updatedPost = action.post;
