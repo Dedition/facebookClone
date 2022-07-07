@@ -32,6 +32,8 @@ function App() {
         <Route exact path="/login" component={LoginForm} />
 
         <Route exact path="/test" component={TestRender} />
+
+        <Route exact path="/signup" component={SignUpForm} />
       </Switch>
     </BrowserRouter>
   );
