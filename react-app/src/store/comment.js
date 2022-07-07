@@ -98,7 +98,7 @@ export default function commentReducer(state = initialState, action) {
             newState = { ...state };
             action.comments.forEach((comment) => {
                 newState[comment.commentId] = comment;
-            }
+            });
             return newState;
         case UPDATE_COMMENT:
             newState = { ...state };
