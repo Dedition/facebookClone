@@ -4,6 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { months, years } from './utils';
 import moment from 'moment';
+import "./SignUpForm.css";
 
 const SignUpForm = ({ setIsOpen }) => {
   const dispatch = useDispatch();

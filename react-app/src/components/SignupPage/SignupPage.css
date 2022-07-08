@@ -53,14 +53,71 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
     padding-bottom: 24px;
+    padding-top: 10px;
     margin: 40px 0 0;
-    width: 396px;
     background-color: white;
+    width: 396px;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }
+
+.login__errors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 14px;
+    color: #ff0000;
+    margin-top: 6px;
+}
+
+.login__input {
+    border: 1px solid #dddfe2;
+    font-size: 17px;
+    padding: 14px 16px;
+    width: 330px;
+    border-radius: 6px;
+}
+
+.login__button {
+    background-color: #1877f2;
+    border: none;
+    border-radius: 6px;
+    font-size: 20px;
+    line-height: 48px;
+    width: 367px;
+    padding: 0 16px;
+    margin-top: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.demo__button {
+    background-color: white;
+    color: #1877f2;
+    border: none;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.demo__button:hover {
+    background-color: #144b9374;
+    color: rgb(112, 108, 108);
+}
+
+.border__bottom {
+    border-bottom: 1px solid #dddfe2;
+    margin-bottom: 16px;
+}
+
+
+
 
 .footer {
     position: fixed;
