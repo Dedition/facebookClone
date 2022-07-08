@@ -35,46 +35,27 @@ const SignUpForm = ({ setIsOpen }) => {
 
 
   useEffect(() => {
-    if (username === '' || firstName === '' || lastName === '' || email === '' || birthday === '' || password === '' || repeatPassword === '') {
-      setErrors(['All fields are required']);
-    }
+    const err = [];
+    if (username === '' || firstName === '' || lastName === '' || email === '' || password === '' || repeatPassword === '') err.push('All fields are required');
 
-    if (password !== repeatPassword) {
-      setErrors(['Passwords do not match']);
-    }
+    if (password !== repeatPassword) err.push('Passwords do not match');
 
-    if (username.length > 20) {
-      setErrors(['Username must be less than 20 characters']);
-    }
+    if (username.length > 20) err.push('Username must be less than 20 characters');
 
-    if (firstName.length > 20) {
-      setErrors(['First name must be less than 20 characters']);
-    }
+    if (firstName.length > 20) err.push('First name must be less than 20 characters');
 
-    if (lastName.length > 20) {
-      setErrors(['Last name must be less than 20 characters']);
-    }
+    if (lastName.length > 20) err.push('Last name must be less than 20 characters');
 
-    if (email.length > 50) {
-      setErrors(['Email must be less than 50 characters']);
-    }
+    if (email.length > 50) err.push('Email must be less than 50 characters');
 
-    if (email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/) === null) {
-      setErrors(['Email must include an @ symbol and a .']);
-    }
+    if (email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/) === null) err.push('Email must include an @ symbol and a .');
 
+    if (password.length > 20) err.push('Password must be less than 20 characters');
 
-    if (password.length > 20) {
-      setErrors(['Password must be less than 20 characters']);
-    }
+    if (repeatPassword.length > 20) err.push('Repeat password must be less than 20 characters');
 
-    if (repeatPassword.length > 20) {
-      setErrors(['Repeat password must be less than 20 characters']);
-    }
-
-
-
-  }, [username, firstName, lastName, email, birthday, password, repeatPassword]);
+    setErrors(err);
+  }, [username, firstName, lastName, email, password, repeatPassword]);
 
 
   const onSignUp = async (e) => {
@@ -86,8 +67,8 @@ const SignUpForm = ({ setIsOpen }) => {
 
     const formData = new FormData();
     formData.append('username', username);
-    formData.append('first_name', firstName);
-    formData.append('last_name', lastName);
+    formData.append('firstname', firstName);
+    formData.append('lastname', lastName);
     formData.append('email', email);
     formData.append('birthday', birthday);
     formData.append('password', password);
@@ -105,6 +86,8 @@ const SignUpForm = ({ setIsOpen }) => {
     }
     setErrors(err);
   }
+
+
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -127,10 +110,6 @@ const SignUpForm = ({ setIsOpen }) => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
-  };
-
-  const updateBirthday = (e) => {
-    setBirthday(e.target.value);
   };
 
   const updateMonth = (e) => {

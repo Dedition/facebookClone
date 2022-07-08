@@ -19,6 +19,10 @@ body {
     padding-top: 92px;
 }
 
+.signup__holder {
+    margin-left: 50%;
+}
+
 .signup__main__container {
     display: flex;
     flex-direction: row;
@@ -62,6 +66,7 @@ body {
     width: 396px;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin-left: 300px;
 }
 
 .login__errors {
@@ -74,6 +79,10 @@ body {
     font-size: 14px;
     color: #ff0000;
     margin-top: 6px;
+}
+
+.login__input__container {
+    padding: 6px 0;
 }
 
 .login__input {

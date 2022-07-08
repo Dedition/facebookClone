@@ -11,19 +11,23 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (email === '' || password === '') {
-      setErrors(['Email and password are required']);
-    }
+  //   if (email === '' || password === '') {
+  //     setErrors(['Email and password are required']);
+  //   }
 
-  }, [email, password]);
+  // }, [email, password]);
 
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    }
+
+    if (email === '' || password === '') {
+      setErrors(['Email and password are required']);
     }
   };
 
@@ -47,22 +51,26 @@ const LoginForm = () => {
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div className="login__input">
+        <div className="login__input__container">
           <input
             name='email'
+            className='login__input'
             type='text'
             placeholder='Email'
             value={email}
             onChange={updateEmail}
+            autoComplete='off'
           />
         </div>
-        <div className="login__input">
+        <div className="login__input__container">
           <input
             name='password'
             type='password'
+            className="login__input"
             placeholder='Password'
             value={password}
             onChange={updatePassword}
+            autoComplete='off'
           />
         </div>
       </form>
