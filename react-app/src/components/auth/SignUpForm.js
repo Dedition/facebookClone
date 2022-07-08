@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { months, years } from './utils';
 import moment from 'moment';
-import "./SignUpForm.css";
 
 const SignUpForm = ({ setIsOpen }) => {
   const dispatch = useDispatch();
@@ -25,14 +24,16 @@ const SignUpForm = ({ setIsOpen }) => {
   let date = new Date();
 
   const [month, setMonth] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[0]);
-  console.log(month);
+  // console.log(month);
 
 
   const [day, setDay] = useState("1");
-  console.log(day);
+  // console.log(day);
 
   const [year, setYear] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[2]);
-  console.log(year);
+  // console.log(year);
+
+
 
 
   const onSignUp = async (e) => {
@@ -40,48 +41,29 @@ const SignUpForm = ({ setIsOpen }) => {
     const err = [];
 
     let birthday = new Date(`${month} ${day}, ${year}`);
-    console.log(month, day, year);
     birthday = birthday.toISOString();
-    console.log(birthday);
 
-    if (username.length < 20 && firstName.length < 20 && lastName.length < 20 && email.length < 50 && password.length < 50 && repeatPassword.length < 50) {
-      if (password === repeatPassword) {
-        const user = await dispatch(signUp(username, firstName, lastName, email, password, birthday));
-        if (user) {
-          history.push('/login');
-          setIsOpen(false);
-        }
-      } else {
-        err.push('Passwords do not match');
-        setErrors(err);
-      }
-    } else if (!username || !firstName || !lastName || !email || !password || !repeatPassword) {
-      err.push('Please fill out all fields');
-      setErrors(err);
-    } else if (username.length > 20) {
-      err.push('Username must be less than 20 characters');
-      setErrors(err);
-    } else if (firstName.length > 20) {
-      err.push('First name must be less than 20 characters');
-      setErrors(err);
-    } else if (lastName.length > 20) {
-      err.push('Last name must be less than 20 characters');
-      setErrors(err);
-    } else if (email.length > 50) {
-      err.push('Email must be less than 50 characters');
-      setErrors(err);
-    } else if (password.length > 50) {
-      err.push('Password must be less than 50 characters');
-      setErrors(err);
-    } else if (repeatPassword.length > 50) {
-      err.push('Repeat password must be less than 50 characters');
-      setErrors(err);
-    } else {
-      err.push('Please fill out all fields');
-      setErrors(err);
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('first_name', firstName);
+    formData.append('last_name', lastName);
+    formData.append('email', email);
+    formData.append('birthday', birthday);
+    formData.append('password', password);
+    console.log(formData);
+
+    const data = await dispatch(signUp(formData));
+    console.log(data);
+
+    if (data && data.includes("username : Username is already in use.")) {
+      err.push('Username: Username is already in use.')
     }
-  }
 
+    if (data && data.includes("email : Email address is already in use.")) {
+      err.push('Email: Email is already in use')
+    }
+    setErrors(err);
+  }
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -134,7 +116,7 @@ const SignUpForm = ({ setIsOpen }) => {
           It's quick and easy.
           <form onSubmit={onSignUp}>
             <div>
-              {errors.map((error, ind) => (
+              {errors.length > 0 && errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}
             </div>
@@ -255,7 +237,7 @@ const SignUpForm = ({ setIsOpen }) => {
               </select>
             </div>
             <div className='create__account__button__container'>
-              <button type='submit' className='create__account__submit-button'>Sign Up</button>
+              <button type='submit' className='create__account__submit-button' disabled={!!errors.length}>Sign Up</button>
             </div>
           </form>
         </div>
