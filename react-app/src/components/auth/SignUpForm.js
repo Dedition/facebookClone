@@ -77,11 +77,11 @@ const SignUpForm = ({ setIsOpen }) => {
     const data = await dispatch(signUp(formData));
     console.log(data);
 
-    if (data?.includes("username : Username is already in use.")) {
+    if (data.includes("username : Username is already in use.")) {
       err.push('Username: Username is already in use.')
     }
 
-    if (data?.includes("email : Email address is already in use.")) {
+    if (data.includes("email : Email address is already in use.")) {
       err.push('Email: Email is already in use')
     }
     setErrors(err);

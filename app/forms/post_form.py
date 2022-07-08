@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired, ValidationError
 class CreatePostForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     content = StringField('content', validators=[DataRequired()])
+    image_url = StringField('image_url')
 
     def validate_user_id(self, user_id):
         if user_id.data < 0:

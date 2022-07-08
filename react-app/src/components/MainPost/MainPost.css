@@ -1,0 +1,76 @@
+.mainPost {
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    width: 100%;
+}
+
+/* Make chatHeader be right in the center of the container */
+.postHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    height: 50px;
+    background-color: #f5f5f5;
+    border-radius: 15px 15px 0 0;
+}
+
+.mainPost__top {
+    display: flex;
+    border-bottom: 1px solid #eff2f5;
+    padding: 15px;
+}
+
+.mainPost__top>form {
+    display: flex;
+    flex: 1;
+}
+
+.mainPost__top>form>input {
+    border: none;
+    outline-width: 0;
+    padding: 5px 20px;
+    margin: 0 10px;
+    border-radius: 999px;
+    background-color: #eff2f5;
+}
+
+.mainPost__top>form>button {
+    display: none;
+}
+
+.mainPost__input {
+    flex: 1;
+    width: 200px;
+
+}
+
+.mainPost__bottom {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mainPost__option {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: grey;
+    margin: 5px;
+}
+
+.mainPost__option>h3 {
+    font-size: medium;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.mainPost__option:hover {
+    background-color: #eff2f5;
+    border-radius: 20px;
+}

@@ -8,6 +8,9 @@ import './Header.css';
 function Header() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
+    console.log(user);
+
+
 
 
     const [name, setName] = useState('');
@@ -31,13 +34,13 @@ function Header() {
 
                 <div className="splash__header__option header__option--active">
                     <a href="https://github.com/Dedition">
-                        <i class="fa-brands fa-github" ></i>
+                        <i className="fa-brands fa-github" ></i>
                     </a>
                 </div>
 
                 <div className="splash__header__option header__option--active">
                     <a href="https://www.linkedin.com/in/leo-l-79a260b0/">
-                        <i class="fa-brands fa-linkedin"></i>
+                        <i className="fa-brands fa-linkedin"></i>
                     </a>
                 </div>
 
@@ -51,8 +54,8 @@ function Header() {
 
             <div className="splash__header__right">
                 <div className='splash__header__info'>
-                    <img src={`${user.avatar}`} alt="avatar" className='header__avatar' />
-                    <h3>{user.username}</h3>
+                    <img src={`${user?.avatar}`} alt="avatar" className='header__avatar' />
+                    <h3>{user?.username}</h3>
                 </div>
                 <div className='logout__button'>
                     <LogoutButton />
