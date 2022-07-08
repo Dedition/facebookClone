@@ -34,6 +34,42 @@ const SignUpForm = ({ setIsOpen }) => {
   // console.log(year);
 
 
+  useEffect(() => {
+    if (username === '' || firstName === '' || lastName === '' || email === '' || birthday === '' || password === '' || repeatPassword === '') {
+      setErrors(['All fields are required']);
+    }
+
+    if (password !== repeatPassword) {
+      setErrors(['Passwords do not match']);
+    }
+
+    if (username.length > 20) {
+      setErrors(['Username must be less than 20 characters']);
+    }
+
+    if (firstName.length > 20) {
+      setErrors(['First name must be less than 20 characters']);
+    }
+
+    if (lastName.length > 20) {
+      setErrors(['Last name must be less than 20 characters']);
+    }
+
+    if (email.length > 50) {
+      setErrors(['Email must be less than 50 characters']);
+    }
+
+    if (password.length > 20) {
+      setErrors(['Password must be less than 20 characters']);
+    }
+
+    if (repeatPassword.length > 20) {
+      setErrors(['Repeat password must be less than 20 characters']);
+    }
+
+
+
+  }, [username, firstName, lastName, email, birthday, password, repeatPassword]);
 
 
   const onSignUp = async (e) => {
