@@ -33,7 +33,7 @@ function App() {
       <Switch>
         {/* <Route exact path="/login" component={LoginForm} /> */}
 
-        {/* <Route exact path="/test" component={TestRender} /> */}
+        <Route exact path="/test" component={TestRender} />
 
         <Route path="/signup" component={SignupPage} />
       </Switch>
