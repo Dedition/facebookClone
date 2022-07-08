@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
 from app.models import db, Post
 from ..forms.post_form import CreatePostForm, EditPostForm
 
@@ -9,9 +10,10 @@ post_routes = Blueprint('post_routes', __name__)
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 
 
-@post_routes.route('/', methods=['POST'])
+@post_routes.route("", methods=['POST'])
 def create_post():
     form = CreatePostForm(request.form)
+    print(request.json, current_user.id, "REQUEST.JSON"*20)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
 
@@ -20,10 +22,10 @@ def create_post():
         # AWS S3 Upload END
 
         post = Post(
-            user_id=form.user_id.data,
+            user_id=current_user.id,
             content=form.content.data,
             image_url=form.image_url.data,
-            edited=form.edited.data
+            edited=False
         )
 
         db.session.add(post)

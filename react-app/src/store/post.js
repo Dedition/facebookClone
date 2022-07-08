@@ -24,13 +24,14 @@ const removePost = (postId) => ({ type: REMOVE, postId });
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (payload) => async (dispatch) => {
+    console.log(payload);
     const response = await fetch("/api/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post),
+        body: JSON.stringify(payload),
     });
-
+    console.log(response);
     if (response.ok) {
         const newPost = await response.json();
         dispatch(addPost(newPost));

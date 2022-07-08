@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createPost } from '../../store/post';
+
 import "./MainPost.css";
 
 
@@ -13,7 +15,15 @@ function MainChat() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const payload = {
+            content,
+            image_url: imageUrl,
+        };
 
+        dispatch(createPost(payload));
+        console.log(payload);
+        setContent("");
+        setImageUrl("");
     }
 
     return (
@@ -21,7 +31,7 @@ function MainChat() {
             <div className='postHeader'>
                 <div className="mainPost__top">
                     <img src={`${user?.avatar}`} alt="avatar" className='header__avatar' />
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <input className="mainPost__input" value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder={`What's on your mind, ${user?.username}?`} />
                         <input placeholder='Image URL (Optional)' value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                         <button className="mainPost__button" type="submit" onClick={handleSubmit}>Hidden</button>
