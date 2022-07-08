@@ -149,6 +149,7 @@ const SignUpForm = ({ setIsOpen }) => {
             placeholder='First Name'
             onChange={updateFirstName}
             value={firstName}
+            autoComplete='off'
           ></input>
 
           <div>
@@ -160,6 +161,7 @@ const SignUpForm = ({ setIsOpen }) => {
               placeholder='Surname'
               onChange={updateLastName}
               value={lastName}
+              autoComplete='off'
             ></input>
           </div>
         </div>
@@ -172,6 +174,7 @@ const SignUpForm = ({ setIsOpen }) => {
           placeholder='Username'
           onChange={updateUsername}
           value={username}
+          autoComplete='off'
         ></input>
 
         <div>
@@ -184,6 +187,7 @@ const SignUpForm = ({ setIsOpen }) => {
             placeholder='Email address'
             onChange={updateEmail}
             value={email}
+            autoComplete='off'
           ></input>
 
         </div>
