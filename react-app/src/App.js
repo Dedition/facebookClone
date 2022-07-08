@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import TestRender from './components/testRender/test';
 // import SignUpModal from './components/auth/SignupModal';
 import SignupPage from './components/SignupPage/SignupPage';
-import Header from './components/Header/Header';
+import LandingPage from './components/LandingPage/LandingPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,10 +33,9 @@ function App() {
       {/* <ProtectedRoute><NavBar /></ProtectedRoute> */}
       <Switch>
         {/* <Route exact path="/login" component={LoginForm} /> */}
+        <ProtectedRoute exact path="/welcome" component={LandingPage} />
 
         <Route exact path="/test" component={TestRender} />
-
-        <Route exact path="/header" component={Header} />
 
         <Route path="/signup" component={SignupPage} />
       </Switch>

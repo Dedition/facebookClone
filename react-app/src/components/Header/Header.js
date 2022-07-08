@@ -51,8 +51,8 @@ function Header() {
 
             <div className="splash__header__right">
                 <div className='splash__header__info'>
-                    <img src={`${user.avatar}`} alt="avatar" className='header__avatar' />
-                    <h3>{user.username}</h3>
+                    <img src={`${user?.avatar}`} alt="avatar" className='header__avatar' />
+                    <h3>{user?.username}</h3>
                 </div>
                 <div className='logout__button'>
                     <LogoutButton />
