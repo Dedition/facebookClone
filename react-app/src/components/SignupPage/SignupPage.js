@@ -11,7 +11,7 @@ function SignupPage() {
             <div>
                 <div className="signup__main__container">
                     <div className="signup__main__text">
-                        <span className="fb__logo">facebook</span>
+                        <span className="fb-logo">facebook</span>
                         <span className="signup__text">
                             Facebook helps you connect and share with the people in your life.
                         </span>

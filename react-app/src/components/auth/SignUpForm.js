@@ -59,6 +59,11 @@ const SignUpForm = ({ setIsOpen }) => {
       setErrors(['Email must be less than 50 characters']);
     }
 
+    if (email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/) === null) {
+      setErrors(['Email must include an @ symbol and a .']);
+    }
+
+
     if (password.length > 20) {
       setErrors(['Password must be less than 20 characters']);
     }
@@ -145,139 +150,141 @@ const SignUpForm = ({ setIsOpen }) => {
   }
 
   return (
-    <div className='signup__form__container'>
-      <div className='signup__form__header-one'>
-        Sign Up
-        <div className='signup__form__header-two'>
-          It's quick and easy.
-          <form onSubmit={onSignUp}>
-            <div>
-              {errors.length > 0 && errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div>
-            <div>
-
-              <label>Username</label>
-              <input
-                type='text'
-                name='username'
-                placeholder='Username'
-                onChange={updateUsername}
-                value={username}
-              ></input>
-
-            </div>
-
-            <div>
-              <label>First Name</label>
-              <input
-                type='text'
-                name='firstName'
-                placeholder='First Name'
-                onChange={updateFirstName}
-                value={firstName}
-              ></input>
-            </div>
-
-            <div>
-              <label>Surname</label>
-              <input
-                type='text'
-                name='lastName'
-                placeholder='Surname'
-                onChange={updateLastName}
-                value={lastName}
-              ></input>
-            </div>
-            <div>
-
-              <label>Email</label>
-              <input
-                type='text'
-                name='email'
-                placeholder='Email address'
-                onChange={updateEmail}
-                value={email}
-              ></input>
-
-            </div>
-            <div>
-
-              <label>Password</label>
-              <input
-                type='password'
-                name='password'
-                placeholder='New Password'
-                onChange={updatePassword}
-                value={password}
-              ></input>
-
-            </div>
-            <div>
-
-              <label>Repeat Password</label>
-              <input
-                type='password'
-                name='repeat_password'
-                onChange={updateRepeatPassword}
-                value={repeatPassword}
-                required={true}
-              ></input>
-
-            </div>
-
-            <span className="birthday">Birthday</span>
-            <div className="create__account__input__name__container">
-              <select
-                className="create__birthday__input"
-                value={month}
-                onChange={updateMonth}
-                required
-              >
-                {months.map((month) => {
-                  return (
-                    <option value={month} key={month}>
-                      {month}
-                    </option>
-                  );
-                })}
-              </select>
-              <select
-                className="create__birthday__input"
-                value={day}
-                onChange={updateDay}
-                required
-              >
-                {Array.apply(null, Array(31)).map(function (ele, i) {
-                  return (
-                    <option value={(i += 1)} key={i}>
-                      {i}
-                    </option>
-                  );
-                })}
-              </select>
-              <select
-                className="create__birthday__input"
-                value={year}
-                onChange={updateYear}
-                required
-              >
-                {years.map((year) => {
-                  return (
-                    <option value={year} key={year}>
-                      {year}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            <div className='create__account__button__container'>
-              <button type='submit' className='create__account__submit-button' disabled={!!errors.length}>Sign Up</button>
-            </div>
-          </form>
-        </div>
+    <div>
+      <div className='signup__form__header'>
+        <div className='signup__form__header-one'>Sign Up</div>
+        <div className='signup__form__header-two'>It's quick and easy.</div>
       </div>
+      <form onSubmit={onSignUp}>
+        <div>
+          {errors.length > 0 && errors.map((error, ind) => (
+            <div className="login__errors" key={ind}>* {error}</div>
+          ))}
+        </div>
+        <div className='creation__input__container'>
+
+          <input
+            className='creation__input__name'
+            type='text'
+            name='firstName'
+            placeholder='First Name'
+            onChange={updateFirstName}
+            value={firstName}
+          ></input>
+
+          <div>
+
+            <input
+              className='creation__input__name'
+              type='text'
+              name='lastName'
+              placeholder='Surname'
+              onChange={updateLastName}
+              value={lastName}
+            ></input>
+          </div>
+        </div>
+
+
+        <input
+          className='creation__input'
+          type='text'
+          name='username'
+          placeholder='Username'
+          onChange={updateUsername}
+          value={username}
+        ></input>
+
+        <div>
+
+
+          <input
+            className='creation__input'
+            type='text'
+            name='email'
+            placeholder='Email address'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+
+        </div>
+        <div>
+
+
+          <input
+            className='creation__input'
+            type='password'
+            name='password'
+            placeholder='New Password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+
+        </div>
+        <div>
+
+
+          <input
+            className='creation__input'
+            placeholder='Confirm Password'
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+
+        </div>
+
+        <span className="birthday">Birthday</span>
+        <div className="create__account__input__name__container">
+          <select
+            className="create__birthday"
+            value={month}
+            onChange={updateMonth}
+            required
+          >
+            {months.map((month) => {
+              return (
+                <option value={month} key={month}>
+                  {month}
+                </option>
+              );
+            })}
+          </select>
+          <select
+            className="create__birthday"
+            value={day}
+            onChange={updateDay}
+            required
+          >
+            {Array.apply(null, Array(31)).map(function (ele, i) {
+              return (
+                <option value={(i += 1)} key={i}>
+                  {i}
+                </option>
+              );
+            })}
+          </select>
+          <select
+            className="create__birthday"
+            value={year}
+            onChange={updateYear}
+            required
+          >
+            {years.map((year) => {
+              return (
+                <option value={year} key={year}>
+                  {year}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className='create__account__button__container'>
+          <button type='submit' className='create__account__submit-button' disabled={!!errors.length}>Sign Up</button>
+        </div>
+      </form>
     </div>
   );
 }
