@@ -12,7 +12,7 @@ function MainChat() {
 
     const user = useSelector(state => state.session.user);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const payload = {
@@ -20,7 +20,7 @@ function MainChat() {
             image_url: imageUrl,
         };
 
-        dispatch(createPost(payload));
+        const data = await dispatch(createPost(payload));
         console.log(payload);
         setContent("");
         setImageUrl("");

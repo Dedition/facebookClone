@@ -12,11 +12,10 @@ post_routes = Blueprint('post_routes', __name__)
 
 @post_routes.route("", methods=['POST'])
 def create_post():
-    form = CreatePostForm(request.form)
-    print(request.json, current_user.id, "REQUEST.JSON"*20)
+    form = CreatePostForm()
+    # print(request.json, int(current_user.id), "REQUEST.JSON"*20)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-
         # AWS S3 Upload START
 
         # AWS S3 Upload END
@@ -44,13 +43,13 @@ def create_post():
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 
 
-@post_routes.route('/')
+@ post_routes.route('/')
 def get_posts():
     posts = Post.query.all()
     return {'posts': [post.to_dict() for post in posts]}
 
 
-@post_routes.route('/<int:post_id>')
+@ post_routes.route('/<int:post_id>')
 def get_all_users_posts(id):
     posts = Post.query.filter_by(user_id=id).all()
     return {'posts': [post.to_dict() for post in posts]}
@@ -60,7 +59,7 @@ def get_all_users_posts(id):
 # *                                  UPDATE
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 
-@post_routes.route('/<int:id>', methods=['PUT'])
+@ post_routes.route('/<int:id>', methods=['PUT'])
 def edit_post(id):
     form = EditPostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -85,7 +84,7 @@ def edit_post(id):
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 
 
-@post_routes.route('/<int:id>', methods=['DELETE'])
+@ post_routes.route('/<int:id>', methods=['DELETE'])
 def delete_post(id):
     if (id):
         post = Post.query.get(id)
