@@ -11,6 +11,7 @@
     position: relative;
     align-items: center;
     padding: 15px;
+    margin: 20px;
 }
 
 .post__header>.post__avatar {
@@ -30,15 +31,29 @@
 }
 
 .post__image {
-    width: 35%;
+    height: 30rem !important;
+    /* width: 50%; */
+    object-fit: contain;
+    background: cover;
     height: auto;
     border-radius: 15px;
     background-color: whitesmoke;
     box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    /* margin-bottom: 1%; */
 }
 
 .post__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
+    border-radius: 20px;
+}
+
+.post__text {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
 }
 
 .post__options {
@@ -68,4 +83,16 @@
     background-color: #eff2f5;
     border-radius: 10px;
     padding: 10px;
+}
+
+/* .fa-heart {
+    color: #ff0000;
+} */
+
+.fa-edit {
+    color: #00d43c;
+}
+
+.fa-trash-alt {
+    color: maroon;
 }
