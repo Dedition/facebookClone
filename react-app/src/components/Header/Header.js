@@ -44,8 +44,8 @@ function Header() {
                     </a>
                 </div>
 
-                <div className="splash__header__option">
-                </div>
+                {/* <div className="splash__header__option">
+                </div> */}
 
                 {/* <div className="splash__header__option">
                     <i className="fa-solid fa-user-group"></i>
