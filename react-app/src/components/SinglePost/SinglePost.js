@@ -1,9 +1,16 @@
+//*                         React
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import EditPostForm from '../EditPostForm/EditPostForm'
-import { getPosts } from '../../store/post';
 import { DateTime } from 'luxon';
+
+//*                         Store
+import { getPosts } from '../../store/post';
+
+//*                     Files & Components
+import EditPostForm from '../EditPostForm/EditPostForm'
 import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
+import Comments from '../Comments/Comments';
+
 
 function SinglePost({ post }) {
     const [timeStamp, setTimeStamp] = useState(timeSince(post?.created_at));
@@ -50,34 +57,37 @@ function SinglePost({ post }) {
 
 
     return (
-        <div className="post" key={post?.id}>
-            <div className="post__header">
-                <img src={post.user.avatar} alt="avatar" className="post__avatar" />
-                <div className="post__info">
-                    <h3 className="post__username">{post?.user.username}</h3>
-                    <p className="post__date">{timeStamp}</p>
+        <div className="single-post">
+            <div className="post" key={post?.id}>
+                <div className="post__header">
+                    <img src={post.user.avatar} alt="avatar" className="post__avatar" />
+                    <div className="post__info">
+                        <h3 className="post__username">{post?.user.username}</h3>
+                        <p className="post__date">{timeStamp}</p>
+                    </div>
                 </div>
-            </div>
-            <div className="post__content post__bottom">
-                <p className="post__text">{post?.content}</p>
-                {post?.image_url &&
-                    <img src={post?.image_url} alt="post" className="post__image" id="post__image" />
-                }
-            </div>
-            <div className="post__options">
-                <div className="post__option">
-                    <EditPostForm post={post} />
-                    {/* <i className="fas fa-edit"></i> */}
+                <div className="post__content post__bottom">
+                    <p className="post__text">{post?.content}</p>
+                    {post?.image_url &&
+                        <img src={post?.image_url} alt="post" className="post__image" id="post__image" />
+                    }
                 </div>
+                <div className="post__options">
+                    <div className="post__option">
+                        <EditPostForm post={post} />
+                        {/* <i className="fas fa-edit"></i> */}
+                    </div>
 
-                <div className="post__option">
-                    <i className="fas fa-heart"></i>
-                </div>
+                    <div className="post__option">
+                        <i className="fas fa-heart"></i>
+                    </div>
 
-                <div className="post__option">
-                    <DeleteButtonForm post={post} />
+                    <div className="post__option">
+                        <DeleteButtonForm post={post} />
+                    </div>
                 </div>
             </div>
+            <Comments post={post} />
         </div>
     )
 }
