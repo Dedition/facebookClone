@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import EditPostForm from '../EditPostForm/EditPostForm'
 import { getPosts } from '../../store/post';
 import { DateTime } from 'luxon';
+import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
 
 function SinglePost({ post }) {
     const [timeStamp, setTimeStamp] = useState(timeSince(post?.created_at));
@@ -31,11 +32,17 @@ function SinglePost({ post }) {
         let diff = now.diff(then).toObject().milliseconds;
         if (diff < 1000) return "Just now";
         if (diff < 60000) return `${Math.floor(diff / 1000)} seconds ago`;
+        if (diff < 120000) return `${Math.floor(diff / 60000)} minute ago`;
         if (diff < 3600000) return `${Math.floor(diff / 60000)} minutes ago`;
+        if (diff < 7200000) return `${Math.floor(diff / 3600000)} hour ago`;
         if (diff < 86400000) return `${Math.floor(diff / 3600000)} hours ago`;
+        if (diff < 172800000) return `${Math.floor(diff / 86400000)} day ago`;
         if (diff < 604800000) return `${Math.floor(diff / 86400000)} days ago`;
+        if (diff < 1209600000) return `${Math.floor(diff / 604800000)} week ago`;
         if (diff < 2629800000) return `${Math.floor(diff / 604800000)} weeks ago`;
+        if (diff < 5259490000) return `${Math.floor(diff / 2629800000)} month ago`;
         if (diff < 31557600000) return `${Math.floor(diff / 2629800000)} months ago`;
+        if (diff < 31557600000) return `${Math.floor(diff / 31557600000)} year ago`;
         if (diff < 31557600000) return `${Math.floor(diff / 31557600000)} years ago`;
         return then.format("MMMM Do YYYY, h:mm:ss a");
     };
@@ -53,9 +60,9 @@ function SinglePost({ post }) {
             </div>
             <div className="post__content post__bottom">
                 <p className="post__text">{post?.content}</p>
-
-                <img src={post?.image_url} alt="post" className="post__image" id="post__image" />
-
+                {post?.image_url &&
+                    <img src={post?.image_url} alt="post" className="post__image" id="post__image" />
+                }
             </div>
             <div className="post__options">
                 <div className="post__option">
@@ -68,7 +75,7 @@ function SinglePost({ post }) {
                 </div>
 
                 <div className="post__option">
-                    <i className="fas fa-trash-alt"></i>
+                    <DeleteButtonForm post={post} />
                 </div>
             </div>
         </div>
