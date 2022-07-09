@@ -53,9 +53,9 @@ function SinglePost({ post }) {
             </div>
             <div className="post__content post__bottom">
                 <p className="post__text">{post?.content}</p>
-
-                <img src={post?.image_url} alt="post" className="post__image" id="post__image" />
-
+                {post?.image_url &&
+                    <img src={post?.image_url} alt="post" className="post__image" id="post__image" />
+                }
             </div>
             <div className="post__options">
                 <div className="post__option">
