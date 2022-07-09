@@ -1,26 +1,29 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createPost } from '../../store/post';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePostById } from "../../store/post";
 
-import "./MainPost.css";
-
-
-function MainChat() {
+function EditPost({ post }) {
     const dispatch = useDispatch();
-    const [content, setContent] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    const [content, setContent] = useState(post.content);
+    const [imageUrl, setImageUrl] = useState(post.image_url);
 
     const user = useSelector(state => state.session.user);
+    let posts = useSelector(state => state.posts);
+    posts = Object.values(posts);
+
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const payload = {
+            postId: post.id,
             content,
             image_url: imageUrl,
         };
 
-        const data = await dispatch(createPost(payload));
+        const data = await dispatch(updatePostById(payload));
         console.log(payload);
         setContent("");
         setImageUrl("");
@@ -49,4 +52,4 @@ function MainChat() {
     )
 }
 
-export default MainChat;
+export default EditPost;
