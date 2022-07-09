@@ -1,3 +1,4 @@
+import AllPosts from "../AllPosts/AllPosts";
 import Header from "../Header/Header";
 import MainPost from "../MainPost/MainPost";
 
@@ -6,6 +7,7 @@ const LandingPage = () => {
         <div className="landing-page">
             <Header />
             <MainPost />
+            <AllPosts />
         </div>
     )
 }
