@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 //*                     Files & Components
 import CommentsContainer from '../CommentsContainer/CommentsContainer';
-import CreateComment from '../CreateComment/CreateComment';
+import "./Comments.css";
 
 const Comments = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);

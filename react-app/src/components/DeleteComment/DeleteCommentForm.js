@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 //*                     Files & Components
-import DeletePost from "./DeletePost/DeletePost";
+import DeleteComment from "./DeleteComment";
 
-const DeleteButtonForm = ({ post }) => {
+const DeleteCommentForm = ({ comment }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
@@ -15,10 +15,10 @@ const DeleteButtonForm = ({ post }) => {
         <>
             <i className="fas fa-trash-alt" onClick={handleClick}></i>
             {isOpen && (
-                <DeletePost post={post} isOpen={setIsOpen} />
+                <DeleteComment comment={comment} isOpen={setIsOpen} />
             )}
         </>
     );
 }
 
-export default DeleteButtonForm;
+export default DeleteCommentForm;

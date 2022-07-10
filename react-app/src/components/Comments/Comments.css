@@ -1,4 +1,4 @@
-/* .comments {
+.comments {
     display: flex;
     flex-direction: row;
     background-color: #f2f3f5;
@@ -11,4 +11,29 @@
 .comments__body {
     display: flex;
     flex-direction: row;
-} */
+}
+
+.comments__show.myself {
+    display: flex;
+    flex-direction: row;
+    border-left: 2px solid #4080ff;
+}
+
+.comments-container p {
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    margin: 10px 15px;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+}
+
+.comments-container__body {
+    padding: 20px
+}
+
+.comments-container__body__comment {
+    /* color: #385898; */
+    font-weight: 700;
+}

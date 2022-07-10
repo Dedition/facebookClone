@@ -9,6 +9,7 @@ import { getComments } from '../../store/comment';
 //*                     Files & Components
 import './CommentsContainer';
 import EditCommentForm from '../EditComment/EditCommentForm';
+import DeleteCommentForm from '../DeleteComment/DeleteCommentForm';
 
 
 const CommentsContainer = ({ post }) => {
@@ -18,6 +19,8 @@ const CommentsContainer = ({ post }) => {
     const posts = comments?.filter(comment => comment.post_id === post.id);
     // const postId = posts?.find(comment => comment.post_id === post.id);
     // const [timeStamp, setTimeStamp] = useState(timeSince(comments?.created_at));
+    const user = useSelector(state => state.user);
+
 
 
     function timeSince(time) {
@@ -53,16 +56,17 @@ const CommentsContainer = ({ post }) => {
             </div>
             <div className="comments-container__body">
                 {posts?.map(comment => (
-                    <div className="comments-container__body__comment" key={comment.id}>
+                    <div className={`comments-container__body__comment comments__show ${comment?.user.username === user?.username && `myself`}`} key={comment.id}>
+                        {/* <img src={comment.user.avatar} alt="avatar" /> */}
                         <div className="comments-container__body__comment__header">
-
                             <h3>{comment.user.username}</h3>
-                            <p>{timeSince(comment.created_at)}</p>
-                        </div>
-                        <div className="comments-container__body__comment__body">
-                            <p>{comment.content}</p>
+                            <p className='timestamp'>{timeSince(comment.created_at)}</p>
+                            <div className="comments-container__body__comment__body">
+                                <p>{comment.content}</p>
+                            </div>
                         </div>
                         <EditCommentForm comment={comment} />
+                        <DeleteCommentForm comment={comment} />
                     </div>
                 ))}
             </div>
