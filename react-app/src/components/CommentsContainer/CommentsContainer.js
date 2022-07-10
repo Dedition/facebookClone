@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DateTime } from 'luxon';
+import moment from 'moment';
 
 //*                         Store
 import { getComments } from '../../store/comment';
@@ -20,7 +21,7 @@ const CommentsContainer = ({ post, user }) => {
     // const postId = posts?.find(comment => comment.post_id === post.id);
     // const [timeStamp, setTimeStamp] = useState(timeSince(comments?.created_at));
 
-    console.log(posts, 'comments')
+    // console.log(posts, 'comments')
 
 
     function timeSince(time) {
@@ -52,19 +53,33 @@ const CommentsContainer = ({ post, user }) => {
 
     return (
         <div className="comments-container">
-            <div className="comments-container__header">
-            </div>
-            <div className="comments-container__body">
-                {posts?.map(comment => (
-                    <div className={`comments-container__body__comment comments__show ${comment?.user.username === user?.username && `myself`}`} key={comment.id}>
-                        {/* <img src={comment.user.avatar} alt="avatar" /> */}
-                        <div className="comments-container__body__comment__header comment__avatar">
-                            <p><span>{comment.user.username}</span><img src="/images/3.bp.blogspot.png" className='user__verified'></img></p>
-                            <p className='timestamp'>{timeSince(comment.created_at)}</p>
-                            <div className="comments-container__body__comment__body">
-                                <p>{comment.content}</p>
+            {posts?.map(comment => (
+                <div
+                    className="home__each__comment__container"
+                    key={comment.id}
+                >
+                    <div className="home__comment__user__left">
+                        <img
+                            className="comment__avatar"
+                            src={comment.user.avatar}
+                            alt="commentAvatar"
+                        />
+                    </div>
+                    <div className="home__comment__container">
+                        <div className="home__comment__content">
+                            <div className="home__comment__user__text">
+                                {comment.user.username} <img
+                                    src="/images/3.bp.blogspot.png"
+                                    className='user__verified'>
+                                </img>
                             </div>
+
+                            {comment.content}
+                            <span className="home__comment__username__created">
+                                {moment(comment.created_at).calendar()}
+                            </span>
                         </div>
+
                         {comment.user.username === user?.username && (
                             <div>
                                 <EditCommentForm comment={comment} />
@@ -72,8 +87,8 @@ const CommentsContainer = ({ post, user }) => {
                             </div>
                         )}
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
     );
 }

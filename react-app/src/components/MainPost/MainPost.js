@@ -15,13 +15,13 @@ function MainChat() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const payload = {
-            content,
-            image_url: imageUrl,
-        };
+        const formData = new FormData();
+        formData.append("content", content);
+        formData.append("image_url", imageUrl);
 
-        const data = await dispatch(createPost(payload));
-        console.log(payload);
+
+        const data = await dispatch(createPost(formData));
+        console.log(formData);
         setContent("");
         setImageUrl("");
     }
@@ -32,8 +32,20 @@ function MainChat() {
                 <div className="mainPost__top">
                     <img src={`${user?.avatar}`} alt="avatar" className='header__avatar' />
                     <form onSubmit={handleSubmit} className="form__outline">
-                        <input className="mainPost__input" value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder={`What's on your mind, ${user?.username}?`} />
-                        <input placeholder='Image URL (Optional)' value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+                        <input
+                            className="mainPost__input"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            type="text"
+                            placeholder={`What's on your mind, ${user?.username}?`} />
+
+                        <input
+                            draggable="false"
+                            type="file"
+                            accept="image/png, image/jpeg, image/png, image/gif"
+                            name="image_url"
+                            onChange={(e) => setImageUrl(e.target.files[0])}
+                        />
                         <button className="mainPost__button" type="submit" onClick={handleSubmit}>Hidden</button>
                     </form>
                 </div>

@@ -91,7 +91,7 @@ function SinglePost({ post }) {
                         </div>
                     }
                 </div>
-                <div>
+                <div className="createComment__commentContainer">
                     <CreateComment post={post} user={user} />
                     <Comments post={post} user={user} />
                 </div>

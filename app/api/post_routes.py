@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Post
 from ..forms.post_form import CreatePostForm, EditPostForm
+from app.api.aws_s3_bucket import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 post_routes = Blueprint('post_routes', __name__)
 
@@ -16,14 +18,32 @@ def create_post():
     # print(request.json, int(current_user.id), "REQUEST.JSON"*20)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # AWS S3 Upload START
+        # TODO AWS S3 Upload START
+        if request.files:
+            print("FILES:", request.files)
+            image = request.files['image_url']
+            print("IMAGE:", image)
 
-        # AWS S3 Upload END
+            if not allowed_file(image.filename):
+                return {'error': 'File type not allowed'}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return {'error': 'File upload failed'}, 400
+
+            url = upload['url']
+        else:
+            url = None
+
+        # TODO AWS S3 Upload END
 
         post = Post(
             user_id=current_user.id,
             content=form.content.data,
-            image_url=form.image_url.data,
+            image_url=url,
             edited=False
         )
 

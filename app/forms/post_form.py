@@ -1,12 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
+from wtforms import StringField, IntegerField, FileField
 from wtforms.validators import DataRequired, ValidationError
+from flask_wtf.file import FileAllowed
 
 
 class CreatePostForm(FlaskForm):
     user_id = IntegerField('user_id')
     content = StringField('content', validators=[DataRequired()])
-    image_url = StringField('image_url')
+    image_url = FileField('image_url',  validators=[FileAllowed(
+        ['jpg', 'png', 'jpeg', 'gif', 'img', 'tiff'])])
 
     #! This doesn't work because less than zero is considered None and None isn't considered something
     #! that can be compared against

@@ -24,12 +24,11 @@ const removePost = (postId) => ({ type: REMOVE, postId });
 // TODO                                 CREATE
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-export const createPost = (payload) => async (dispatch) => {
-    console.log(payload);
+export const createPost = (data) => async (dispatch) => {
+    console.log(data);
     const response = await fetch("/api/posts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: data
     });
     console.log(response);
     if (response.ok) {
