@@ -1,6 +1,6 @@
 //*                         React
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { DateTime } from 'luxon';
 
 //*                         Store
@@ -16,6 +16,8 @@ import CreateComment from '../CreateComment/CreateComment';
 function SinglePost({ post }) {
     const [timeStamp, setTimeStamp] = useState(timeSince(post?.created_at));
     const dispatch = useDispatch();
+
+    const user = useSelector(state => state.session.user);
 
 
     // const validImg = new RegExp('^https?://(?:[a-z0-9-]+.)+[a-z]{2,6}(?:/[^/#?]+)+.(?:jpg|gif|png)$')
@@ -61,9 +63,9 @@ function SinglePost({ post }) {
         <div className="single-post">
             <div className="post" key={post?.id}>
                 <div className="post__header">
-                    <img src={post.user.avatar} alt="avatar" className="post__avatar" />
+                    <img src={post?.user.avatar} alt="avatar" className="post__avatar" />
                     <div className="post__info">
-                        <h3 className="post__username">{post?.user.username}</h3>
+                        <h3 className="post__username">{post?.user.username} <img src="/images/3.bp.blogspot.png" className='user__verified'></img></h3>
                         <p className="post__date">{timeStamp}</p>
                     </div>
                 </div>
@@ -74,22 +76,27 @@ function SinglePost({ post }) {
                     }
                 </div>
                 <div className="post__options">
-                    <div className="post__option">
-                        <EditPostForm post={post} />
-                        {/* <i className="fas fa-edit"></i> */}
-                    </div>
-
+                    {user?.id === post?.user_id &&
+                        <div className="post__option">
+                            <EditPostForm post={post} />
+                            {/* <i className="fas fa-edit"></i> */}
+                        </div>
+                    }
                     <div className="post__option">
                         <i className="fas fa-heart"></i>
                     </div>
-
-                    <div className="post__option">
-                        <DeleteButtonForm post={post} timeStamp={setTimeStamp} />
-                    </div>
+                    {user?.id === post?.user_id &&
+                        <div className="post__option">
+                            <DeleteButtonForm post={post} timeStamp={setTimeStamp} />
+                        </div>
+                    }
+                </div>
+                <div>
+                    <CreateComment post={post} user={user} />
+                    <Comments post={post} user={user} />
                 </div>
             </div>
-            <Comments post={post} />
-            <CreateComment post={post} />
+
         </div>
     )
 }

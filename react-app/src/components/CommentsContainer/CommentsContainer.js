@@ -7,20 +7,20 @@ import { DateTime } from 'luxon';
 import { getComments } from '../../store/comment';
 
 //*                     Files & Components
-import './CommentsContainer';
+import './CommentsContainer.css';
 import EditCommentForm from '../EditComment/EditCommentForm';
 import DeleteCommentForm from '../DeleteComment/DeleteCommentForm';
 
 
-const CommentsContainer = ({ post }) => {
+const CommentsContainer = ({ post, user }) => {
     const dispatch = useDispatch();
     let comments = useSelector(state => state.comments);
     comments = Object?.values(comments);
     const posts = comments?.filter(comment => comment.post_id === post.id);
     // const postId = posts?.find(comment => comment.post_id === post.id);
     // const [timeStamp, setTimeStamp] = useState(timeSince(comments?.created_at));
-    const user = useSelector(state => state.user);
 
+    console.log(posts, 'comments')
 
 
     function timeSince(time) {
@@ -58,15 +58,19 @@ const CommentsContainer = ({ post }) => {
                 {posts?.map(comment => (
                     <div className={`comments-container__body__comment comments__show ${comment?.user.username === user?.username && `myself`}`} key={comment.id}>
                         {/* <img src={comment.user.avatar} alt="avatar" /> */}
-                        <div className="comments-container__body__comment__header">
-                            <h3>{comment.user.username}</h3>
+                        <div className="comments-container__body__comment__header comment__avatar">
+                            <p><span>{comment.user.username}</span><img src="/images/3.bp.blogspot.png" className='user__verified'></img></p>
                             <p className='timestamp'>{timeSince(comment.created_at)}</p>
                             <div className="comments-container__body__comment__body">
                                 <p>{comment.content}</p>
                             </div>
                         </div>
-                        <EditCommentForm comment={comment} />
-                        <DeleteCommentForm comment={comment} />
+                        {comment.user.username === user?.username && (
+                            <div>
+                                <EditCommentForm comment={comment} />
+                                <DeleteCommentForm comment={comment} />
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

@@ -31,7 +31,7 @@ function MainChat() {
             <div className='postHeader'>
                 <div className="mainPost__top">
                     <img src={`${user?.avatar}`} alt="avatar" className='header__avatar' />
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="form__outline">
                         <input className="mainPost__input" value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder={`What's on your mind, ${user?.username}?`} />
                         <input placeholder='Image URL (Optional)' value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                         <button className="mainPost__button" type="submit" onClick={handleSubmit}>Hidden</button>
