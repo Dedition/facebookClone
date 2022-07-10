@@ -40,7 +40,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/welcome' />;
+    return <Redirect to='/home' />;
   }
 
   return (

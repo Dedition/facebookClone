@@ -2,9 +2,9 @@
 import { useDispatch } from "react-redux";
 
 //*                         Store
-import { deletePostById } from "../../../store/post";
+import { deleteComment } from "../../store/comment";
 
-const DeletePost = ({ post, isOpen }) => {
+const DeleteComment = ({ comment, isOpen }) => {
     const dispatch = useDispatch();
     // const [isOpen, setIsOpen] = useState(false);
 
@@ -12,15 +12,14 @@ const DeletePost = ({ post, isOpen }) => {
         isOpen(!isOpen);
     }
 
-
     const handleDelete = () => {
-        dispatch(deletePostById(post.id));
+        dispatch(deleteComment(comment.id));
         toggle();
     }
     // Create a delete JSX element that will ask you to confirm or cancel the deletion of the post.
     return (
         <div className="delete-button-container">
-            <h4>This action is <em>final.</em> Are you sure you want to delete this post?</h4>
+            <h4>This action is <em>final.</em> Are you sure you want to delete this comment?</h4>
             <div>
                 <button id="submit" type="submit" onClick={handleDelete}>
                     Yes
@@ -35,4 +34,4 @@ const DeletePost = ({ post, isOpen }) => {
     );
 }
 
-export default DeletePost;
+export default DeleteComment;

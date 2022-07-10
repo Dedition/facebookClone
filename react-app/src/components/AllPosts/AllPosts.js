@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+//*                         React
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+
+//*                         Store
 import { getPosts } from "../../store/post";
-import moment from "moment";
-import EditPost from "../EditPost/EditPost";
+
+//*                     Files & Components
 import "./AllPosts.css";
-import EditPostForm from "../EditPostForm/EditPostForm";
 import SinglePost from "../SinglePost/SinglePost";
 
 function AllPosts() {
@@ -19,10 +20,6 @@ function AllPosts() {
     useEffect(() => {
         dispatch(getPosts());
     }, [dispatch]);
-
-
-
-    console.log(posts, '111111')
 
     const SortedArr = posts?.sort((a, b) => {
         const dateA = new Date(a.created_at).toISOString()

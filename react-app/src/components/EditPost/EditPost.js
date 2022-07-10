@@ -1,5 +1,8 @@
+//*                         React
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+//*                         Store
 import { updatePostById } from "../../store/post";
 
 function EditPost({ post }) {

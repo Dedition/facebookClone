@@ -1,5 +1,8 @@
+//*                         React
 import { useState } from 'react';
-import EditPost from '../EditPost/EditPost';
+
+//*                     Files & Components
+import EditPost from './EditPost';
 
 const EditPostForm = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);
