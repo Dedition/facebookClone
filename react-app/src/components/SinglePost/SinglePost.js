@@ -7,9 +7,10 @@ import { DateTime } from 'luxon';
 import { getPosts } from '../../store/post';
 
 //*                     Files & Components
-import EditPostForm from '../EditPostForm/EditPostForm'
+import EditPostForm from '../EditPost/EditPostForm'
 import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
 import Comments from '../Comments/Comments';
+import CreateComment from '../CreateComment/CreateComment';
 
 
 function SinglePost({ post }) {
@@ -83,11 +84,12 @@ function SinglePost({ post }) {
                     </div>
 
                     <div className="post__option">
-                        <DeleteButtonForm post={post} />
+                        <DeleteButtonForm post={post} timeStamp={setTimeStamp} />
                     </div>
                 </div>
             </div>
             <Comments post={post} />
+            <CreateComment post={post} />
         </div>
     )
 }

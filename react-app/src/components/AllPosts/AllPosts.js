@@ -5,7 +5,6 @@ import { getPosts } from "../../store/post";
 import moment from "moment";
 import EditPost from "../EditPost/EditPost";
 import "./AllPosts.css";
-import EditPostForm from "../EditPostForm/EditPostForm";
 import SinglePost from "../SinglePost/SinglePost";
 
 function AllPosts() {
