@@ -22,14 +22,14 @@ function SinglePost({ post }) {
 
     // const validImg = new RegExp('^https?://(?:[a-z0-9-]+.)+[a-z]{2,6}(?:/[^/#?]+)+.(?:jpg|gif|png)$')
     // console.log(validImg);
-    // useEffect(() => {
-    //     const initialSetter = setInterval(() => {
-    //         setTimeStamp(timeSince(post?.created_at));
+    useEffect(() => {
+        const initialSetter = setInterval(() => {
+            setTimeStamp(timeSince(post?.created_at));
 
-    //         return () => clearInterval(initialSetter)
+            return () => clearInterval(initialSetter)
 
-    //     }, 1000)
-    // }, [timeStamp])
+        }, 1000)
+    }, [timeStamp])
 
     useEffect(() => {
         dispatch(getPosts());
@@ -82,9 +82,9 @@ function SinglePost({ post }) {
                             {/* <i className="fas fa-edit"></i> */}
                         </div>
                     }
-                    <div className="post__option">
+                    {/* <div className="post__option">
                         <i className="fas fa-heart"></i>
-                    </div>
+                    </div> */}
                     {user?.id === post?.user_id &&
                         <div className="post__option">
                             <DeleteButtonForm post={post} timeStamp={setTimeStamp} />

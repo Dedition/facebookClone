@@ -2,6 +2,8 @@
 // TODO                                     Action
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
+import { bindActionCreators } from "redux";
+
 const CREATE_COMMENT = "COMMENT/CREATE";
 const LOAD_COMMENTS = "COMMENT/LOAD";
 const UPDATE_COMMENT = "COMMENT/UPDATE";
@@ -97,23 +99,22 @@ export default function commentReducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_COMMENT:
             newState = { ...state };
-            newState[action.comment.commentId] = action.comment;
+            newState[action.comment.id] = action.comment;
             return newState;
         case LOAD_COMMENTS:
-            newState = { ...state };
+            const allComments = {};
             const comments = action.comments.comments
             comments.forEach((comment) => {
-                newState[comment.commentId] = comment;
+                allComments[comment.id] = comment;
             });
-            return { ...comments };
+            return { ...allComments };
         case UPDATE_COMMENT:
-            newState = { ...state };
-            const updatedComment = action.comment;
-            newState[updatedComment.commentId] = updatedComment;
-            return newState;
+            const updatedComment = { ...state, [action.comment.id]: action.comment };
+            return updatedComment;
         case REMOVE_COMMENT:
             newState = { ...state };
-            delete newState[action.commentId];
+            // console.log(newState[action.commentId.id.id]);
+            delete newState[action.commentId.id];
             return newState;
         default:
             return state;

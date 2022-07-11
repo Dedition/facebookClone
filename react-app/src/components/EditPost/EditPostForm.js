@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 //*                     Files & Components
 import EditPost from './EditPost';
+import { Modal } from '../../context/Modal';
 
 const EditPostForm = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,9 @@ const EditPostForm = ({ post }) => {
         <>
             <i className="fas fa-edit" onClick={handleClick}></i>
             {isOpen && (
-                <EditPost post={post} isOpen={setIsOpen} />
+                <Modal onClose={() => setIsOpen(false)}>
+                    <EditPost post={post} isOpen={setIsOpen} />
+                </Modal>
             )}
         </>
     );

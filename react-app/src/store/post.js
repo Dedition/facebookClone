@@ -100,12 +100,14 @@ export default function postsReducer(state = initialState, action) {
             newState[newPost.postId] = newPost;
             return newState;
         case LOAD:
-            newState = { ...state };
+            const allPosts = {};
             const posts = action.posts.posts;
+            console.log(posts);
             posts.forEach((post) => {
-                newState[post.postId] = post;
+                allPosts[post.id] = post;
+                console.log(allPosts);
             });
-            return { ...posts };
+            return { ...allPosts };
         case UPDATE:
             newState = { ...state };
             const updatedPost = action.post;
@@ -113,6 +115,7 @@ export default function postsReducer(state = initialState, action) {
             return newState;
         case REMOVE:
             newState = { ...state };
+            console.log(action.postId);
             delete newState[action.postId];
             return newState;
         default:

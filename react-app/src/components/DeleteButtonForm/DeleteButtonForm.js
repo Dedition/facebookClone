@@ -3,6 +3,7 @@ import { useState } from "react";
 
 //*                     Files & Components
 import DeletePost from "./DeletePost/DeletePost";
+import { Modal } from '../../context/Modal';
 
 const DeleteButtonForm = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,9 @@ const DeleteButtonForm = ({ post }) => {
         <>
             <i className="fas fa-trash-alt" onClick={handleClick}></i>
             {isOpen && (
-                <DeletePost post={post} isOpen={setIsOpen} />
+                <Modal onClose={() => setIsOpen(false)}>
+                    <DeletePost post={post} isOpen={setIsOpen} />
+                </Modal>
             )}
         </>
     );
