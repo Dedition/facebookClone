@@ -16,6 +16,7 @@
 .home__comment__user__text {
     display: flex;
     flex-direction: row;
+    text-decoration: underline;
 }
 
 .home__comment__username__created {
@@ -39,7 +40,7 @@
     padding-top: 12px;
     margin: 0px 8px 8px 8px;
     border-radius: 16px;
-    background-color: #f0efef;
+    background-color: rgb(216, 215, 215);
 }
 
 /* .comments-container__body__comment {
@@ -67,5 +68,8 @@
     width: 12px;
     margin-left: 3px;
     vertical-align: -1px;
-    z-index: 1000;
+}
+
+.comment__button {
+    display: none;
 }

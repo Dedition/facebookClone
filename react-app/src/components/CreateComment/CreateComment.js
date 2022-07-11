@@ -31,9 +31,11 @@ const CreateComment = ({ post }) => {
         <>
             <form onSubmit={handleChange}>
                 <div className="commentBox">
-                    <img src={`${user?.avatar}`} alt="avatar" className='comment__avatar' />
-                    <input className="comment__input" value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder={`Have something to say, ${user?.username}?`} />
-                    <button className="comment__button" type="submit" onClick={handleChange}>Hidden</button>
+                    <div className='commentBox__top'>
+                        <img src={`${user?.avatar}`} alt="avatar" className='comment__avatar' />
+                        <input className="comment__input" value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder={`Have something to say, ${user?.username}?`} />
+                        <button className="comment__button" type="submit" onClick={handleChange}>Hidden</button>
+                    </div>
                 </div>
 
             </form>
