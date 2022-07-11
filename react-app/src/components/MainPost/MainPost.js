@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost } from '../../store/post';
 
@@ -9,15 +9,18 @@ function MainChat() {
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const ref = React.useRef();
 
     const user = useSelector(state => state.session.user);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        ref.current.value = ""
         const formData = new FormData();
         formData.append("content", content);
         formData.append("image_url", imageUrl);
+
 
 
         const data = await dispatch(createPost(formData));
@@ -40,13 +43,15 @@ function MainChat() {
                             placeholder={`What's on your mind, ${user?.username}?`} />
 
                         <input
+                            className='mainPost__image'
                             draggable="false"
                             type="file"
+                            ref={ref}
                             accept="image/png, image/jpeg, image/png, image/gif"
                             name="image_url"
                             onChange={(e) => setImageUrl(e.target.files[0])}
                         />
-                        <button className="mainPost__button" type="submit" onClick={handleSubmit}>Hidden</button>
+                        <button className="mainPost__button" type="submit" onClick={handleSubmit}><span>Submit</span></button>
                     </form>
                 </div>
 
