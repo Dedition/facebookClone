@@ -36,13 +36,11 @@ const EditComment = ({ comment, post }) => {
 
     return (
         <>
-            <i className="fas fa-edit" onClick={handleClick}></i>
-            {isOpen && (
-                <form onSubmit={handleSubmit}>
-                    <input value={content} onChange={handleChange}></input>
-                    <button type="submit" className="mainPost__button">Submit</button>
-                </form>
-            )}
+            {/* <i className="fas fa-edit" onClick={handleClick}></i> */}
+            <form onSubmit={handleSubmit}>
+                <input value={content} onChange={handleChange}></input>
+                <button type="submit" className="mainPost__button">Submit</button>
+            </form>
         </>
     );
 }
