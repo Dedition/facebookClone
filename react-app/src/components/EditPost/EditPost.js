@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 //*                         Store
 import { updatePostById } from "../../store/post";
+import "./EditPost.css";
 
 function EditPost({ post }) {
     const dispatch = useDispatch();
@@ -23,24 +24,22 @@ function EditPost({ post }) {
         const payload = {
             postId: post.id,
             content,
-            image_url: imageUrl,
         };
 
         const data = await dispatch(updatePostById(payload));
         console.log(payload);
         setContent("");
-        setImageUrl("");
     }
 
     return (
-        <div className="mainPost">
-            <div className='postHeader'>
-                <div className="mainPost__top">
-                    <img src={`${user?.avatar}`} alt="avatar" className='header__avatar' />
+        <div className="editPost">
+            <div className='editPost-Header'>
+                <div className="editPost__top">
+                    <img src={`${user?.avatar}`} alt="avatar" className='header__avatar editPost__avatar' />
                     <form onSubmit={handleSubmit}>
-                        <input className="mainPost__input" value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder={`What's on your mind, ${user?.username}?`} />
-                        <input placeholder='Image URL (Optional)' value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
-                        <button className="mainPost__button" type="submit" onClick={handleSubmit}>Hidden</button>
+                        <input className="editPost__input" value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder={`What's on your mind, ${user?.username}?`} />
+                        {/* <input className="editPost__image" placeholder='Image URL (Optional)' value={imageUrl} onChange={imageUrl} /> */}
+                        <button className="editPost__button" type="submit" onClick={handleSubmit}>Hidden</button>
                     </form>
                 </div>
 

@@ -86,7 +86,6 @@ def edit_post(id):
     if form.validate_on_submit():
         post = Post.query.get(id)
         post.content = form.content.data
-        post.image_url = form.image_url.data
         post.edited = True
 
         db.session.commit()
@@ -97,7 +96,6 @@ def edit_post(id):
         return form.errors, 400
 
     return {'message': 'Invalid request'}, 400
-
 
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 # *                                  DELETE

@@ -78,6 +78,8 @@
     padding-top: 5px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .post__options {
@@ -91,7 +93,7 @@
     padding-top: 10px;
     justify-content: space-evenly;
     color: #8c8c8c;
-    cursor: pointer;
+    /* cursor: pointer; */
     margin: 10px 0 10px 10px;
 }
 
@@ -124,3 +126,31 @@
 .fa-trash-alt {
     color: maroon;
 }
+
+.delete-button-confirmation {
+    background-color: #ff1a09;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+/* .delete-button__cancel {
+    background-color: #307f10;
+border: none;
+color: white;
+padding: 5px 5px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+margin-left: 10px;
+}*/
