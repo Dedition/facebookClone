@@ -8,7 +8,6 @@ import './Header.css';
 function Header() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-    console.log(user);
 
 
 

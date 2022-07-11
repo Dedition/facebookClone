@@ -20,8 +20,6 @@ function SinglePost({ post }) {
     const user = useSelector(state => state.session.user);
 
 
-    // const validImg = new RegExp('^https?://(?:[a-z0-9-]+.)+[a-z]{2,6}(?:/[^/#?]+)+.(?:jpg|gif|png)$')
-    // console.log(validImg);
     useEffect(() => {
         const initialSetter = setInterval(() => {
             setTimeStamp(timeSince(post?.created_at));

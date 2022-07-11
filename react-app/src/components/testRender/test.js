@@ -13,9 +13,6 @@ const TestRender = () => {
 
     const [loaded, setLoaded] = useState(false);
 
-    console.log("allComments", allComments);
-    console.log("posts", postObj);
-    console.log("comments", commentObj);
 
     useEffect(() => {
 

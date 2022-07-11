@@ -23,4 +23,23 @@
     position: absolute;
     border-radius: 5px;
     /* background-color: white; */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 3px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.33);
+    background-color: rgba(4, 66, 85, 0.8);
+}
+
+.edit-comment__input,
+.editPost__input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: transparent;
+    margin-top: 10px;
 }

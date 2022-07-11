@@ -24,7 +24,6 @@ function MainChat() {
 
 
         const data = await dispatch(createPost(formData));
-        console.log(formData);
         setContent("");
         setImageUrl("");
     }

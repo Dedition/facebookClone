@@ -17,6 +17,8 @@ const EditPostForm = ({ post }) => {
             <i className="fas fa-edit" onClick={handleClick}></i>
             {isOpen && (
                 <Modal onClose={() => setIsOpen(false)}>
+                    <i class="fa-solid fa-file-pen" onClick={handleClick} style={{ "color": "whitesmoke" }}></i>
+
                     <EditPost post={post} isOpen={setIsOpen} />
                 </Modal>
             )}

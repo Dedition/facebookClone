@@ -21,7 +21,6 @@ const CommentsContainer = ({ post, user }) => {
     // const postId = posts?.find(comment => comment.post_id === post.id);
     // const [timeStamp, setTimeStamp] = useState(timeSince(comments?.created_at));
 
-    // console.log(posts, 'comments')
 
 
     function timeSince(time) {

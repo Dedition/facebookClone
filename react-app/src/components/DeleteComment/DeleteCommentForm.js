@@ -3,6 +3,7 @@ import { useState } from "react";
 
 //*                     Files & Components
 import DeleteComment from "./DeleteComment";
+import { Modal } from '../../context/Modal';
 
 const DeleteCommentForm = ({ comment }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,9 @@ const DeleteCommentForm = ({ comment }) => {
         <>
             <i className="fas fa-trash-alt" onClick={handleClick}></i>
             {isOpen && (
-                <DeleteComment comment={comment} isOpen={setIsOpen} />
+                <Modal onClose={() => setIsOpen(false)}>
+                    <DeleteComment comment={comment} isOpen={setIsOpen} />
+                </Modal>
             )}
         </>
     );

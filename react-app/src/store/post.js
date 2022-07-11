@@ -25,12 +25,10 @@ const removePost = (postId) => ({ type: REMOVE, postId });
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const createPost = (data) => async (dispatch) => {
-    console.log(data);
     const response = await fetch("/api/posts", {
         method: "POST",
         body: data
     });
-    console.log(response);
     if (response.ok) {
         const newPost = await response.json();
         dispatch(addPost(newPost));
@@ -102,10 +100,9 @@ export default function postsReducer(state = initialState, action) {
         case LOAD:
             const allPosts = {};
             const posts = action.posts.posts;
-            console.log(posts);
+
             posts.forEach((post) => {
                 allPosts[post.id] = post;
-                console.log(allPosts);
             });
             return { ...allPosts };
         case UPDATE:
@@ -115,7 +112,7 @@ export default function postsReducer(state = initialState, action) {
             return newState;
         case REMOVE:
             newState = { ...state };
-            console.log(action.postId);
+
             delete newState[action.postId];
             return newState;
         default:

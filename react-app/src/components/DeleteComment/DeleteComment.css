@@ -1,0 +1,40 @@
+.delete-button-container {
+    color: whitesmoke;
+}
+
+.delete-button-container>div>#submit {
+    border: none;
+    border-radius: 5px;
+    background-color: maroon;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+.delete-button-container>div>#submit:hover {
+    background-color: rgb(151, 16, 16);
+}
+
+
+.delete-button-container>div>#cancel {
+    border: none;
+    border-radius: 5px;
+    background-color: darkcyan;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+}
+
+.delete-button-container>div>#cancel:hover {
+    background-color: rgb(12, 161, 161);
+}

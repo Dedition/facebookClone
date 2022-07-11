@@ -6,21 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editComment } from '../../store/comment';
 
 
-const EditComment = ({ comment, post }) => {
+const EditComment = ({ comment, post, isOpen }) => {
     const dispatch = useDispatch();
-    const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState(comment.content);
 
 
     const handleClick = () => {
-        setIsOpen(!isOpen);
+        isOpen(!isOpen);
     }
 
     const handleChange = (e) => {
         setContent(e.target.value);
     }
 
-    // console.log(comment.id)
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -29,8 +27,9 @@ const EditComment = ({ comment, post }) => {
             commentId: comment.id
         };
 
+
         dispatch(editComment(payload));
-        setIsOpen(false);
+        isOpen(false);
         setContent("");
     }
 
@@ -38,8 +37,8 @@ const EditComment = ({ comment, post }) => {
         <>
             {/* <i className="fas fa-edit" onClick={handleClick}></i> */}
             <form onSubmit={handleSubmit}>
-                <input value={content} onChange={handleChange}></input>
-                <button type="submit" className="mainPost__button">Submit</button>
+                <input value={content} onChange={handleChange} className="edit-comment__input"></input>
+                <button type="submit" className="editPost__button">Submit</button>
             </form>
         </>
     );
