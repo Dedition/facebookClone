@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 //*                         Store
 import { deleteComment } from "../../store/comment";
+import './DeleteComment.css';
 
 const DeleteComment = ({ comment, isOpen }) => {
     const dispatch = useDispatch();

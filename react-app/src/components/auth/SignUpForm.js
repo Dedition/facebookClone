@@ -24,14 +24,11 @@ const SignUpForm = ({ setIsOpen }) => {
   let date = new Date();
 
   const [month, setMonth] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[0]);
-  // console.log(month);
 
 
   const [day, setDay] = useState("1");
-  // console.log(day);
 
   const [year, setYear] = useState(moment(date).format("MMMM Do YYYY, h:mm:ss a").split(",")[0].split(" ")[2]);
-  // console.log(year);
 
 
   useEffect(() => {
@@ -72,10 +69,8 @@ const SignUpForm = ({ setIsOpen }) => {
     formData.append('email', email);
     formData.append('birthday', birthday);
     formData.append('password', password);
-    console.log(formData);
 
     const data = await dispatch(signUp(formData));
-    console.log(data);
 
     if (data?.includes("username : Username is already in use.")) {
       err.push('Username: Username is already in use.')

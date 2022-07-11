@@ -58,7 +58,6 @@ export const getComments = () => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const editComment = (comment) => async (dispatch) => {
-    console.log(comment);
     const response = await fetch(`/api/comments/${comment.commentId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -113,7 +112,6 @@ export default function commentReducer(state = initialState, action) {
             return updatedComment;
         case REMOVE_COMMENT:
             newState = { ...state };
-            // console.log(newState[action.commentId.id.id]);
             delete newState[action.commentId.id];
             return newState;
         default:
