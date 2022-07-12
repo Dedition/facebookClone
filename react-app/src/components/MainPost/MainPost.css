@@ -64,6 +64,7 @@
     letter-spacing: 2px;
     text-decoration: none;
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+    cursor: pointer;
 }
 
 .mainPost__button::before {
