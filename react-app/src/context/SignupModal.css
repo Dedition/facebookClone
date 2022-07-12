@@ -1,4 +1,4 @@
-#modal {
+#signup-modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-#modal-background {
+#signupModal-background {
     position: fixed;
     top: 0;
     right: 0;
@@ -18,7 +18,7 @@
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-#modal-content {
+#signupModal-content {
     position: absolute;
     border-radius: 5px;
     background-color: white;
