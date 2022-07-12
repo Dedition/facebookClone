@@ -31,6 +31,15 @@ const LoginForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (email === '' || password === '') {
+      setErrors(['Email and password are required']);
+    }
+    setErrors([]);
+  }, [email, password]);
+
+
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
