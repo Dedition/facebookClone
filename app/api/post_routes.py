@@ -70,7 +70,7 @@ def create_post():
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 
 
-@ post_routes.route('/')
+@ post_routes.route('')
 def get_posts():
     posts = Post.query.all()
     return {'posts': [post.to_dict() for post in posts]}

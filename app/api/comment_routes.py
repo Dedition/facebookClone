@@ -36,7 +36,7 @@ def create_comment():
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 
 
-@comment_routes.route('/')
+@comment_routes.route('')
 def get_comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
