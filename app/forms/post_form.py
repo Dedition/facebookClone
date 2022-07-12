@@ -16,15 +16,20 @@ class CreatePostForm(FlaskForm):
     #     if user_id.data < 0:
     #         raise ValidationError('User ID must be positive')
 
-    def validate_content(self, content):
-        if len(content.data) > 140:
-            raise ValidationError('Content must be less than 140 characters')
+
+def validate_content(form, field):
+    if len(field.data) > 140:
+        raise ValidationError('Content must be less than 140 characters')
+    if len(field.data) < 1:
+        raise ValidationError(
+            'Content must be more than 1 character to create a post')
 
 
 class EditPostForm(FlaskForm):
-    content = StringField('content', validators=[DataRequired()])
+    content = StringField('content', validators=[
+                          DataRequired(), validate_content])
     image_url = StringField('image_url')
 
-    def validate_content(self, content):
-        if len(content.data) > 140:
-            raise ValidationError('Content must be less than 140 characters')
+    # def validate_content(self, content):
+    #     if len(content.data) > 140:
+    #         raise ValidationError('Content must be less than 140 characters')

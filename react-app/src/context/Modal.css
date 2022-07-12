@@ -43,3 +43,9 @@
     background-color: transparent;
     margin-top: 10px;
 }
+
+.modal-errors {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 10px;
+}

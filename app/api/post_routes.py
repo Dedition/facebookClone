@@ -7,6 +7,17 @@ from app.api.aws_s3_bucket import (
 
 post_routes = Blueprint('post_routes', __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 # TODO ——————————————————————————————————————————————————————————————————————————————————
 # *                                  CREATE
 # TODO ——————————————————————————————————————————————————————————————————————————————————
@@ -51,11 +62,7 @@ def create_post():
         db.session.commit()
 
         return post.to_dict(), 201
-
-    if form.errors:
-        return form.errors, 400
-
-    return {'message': 'Invalid request'}, 400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # TODO ——————————————————————————————————————————————————————————————————————————————————
