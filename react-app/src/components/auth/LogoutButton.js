@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
+import logoutBtn from '../../images/cdn.onlinewebfonts.png'
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
@@ -8,7 +9,7 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  return <img src="/images/cdn.onlinewebfonts.png" alt="logout" className="logout-button" onClick={onLogout} />;
+  return <img src={logoutBtn} alt="logout" className="logout-button" onClick={onLogout} />;
 };
 
 export default LogoutButton;

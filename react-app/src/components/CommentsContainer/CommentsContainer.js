@@ -11,6 +11,7 @@ import { getComments } from '../../store/comment';
 import './CommentsContainer.css';
 import EditCommentForm from '../EditComment/EditCommentForm';
 import DeleteCommentForm from '../DeleteComment/DeleteCommentForm';
+import verifiedIcon from '../../images/3.bp.blogspot.png';
 
 
 const CommentsContainer = ({ post, user }) => {
@@ -72,7 +73,7 @@ const CommentsContainer = ({ post, user }) => {
                         <div className="home__comment__content">
                             <div className="home__comment__user__text">
                                 {comment.user.username} <img
-                                    src="/images/3.bp.blogspot.png"
+                                    src={verifiedIcon}
                                     className='user__verified'>
                                 </img>
                             </div>

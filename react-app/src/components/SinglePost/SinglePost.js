@@ -12,6 +12,8 @@ import EditPostForm from '../EditPost/EditPostForm'
 import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
 import Comments from '../Comments/Comments';
 import CreateComment from '../CreateComment/CreateComment';
+import verifiedIcon from '../../images/3.bp.blogspot.png';
+
 
 
 function SinglePost({ post }) {
@@ -68,7 +70,7 @@ function SinglePost({ post }) {
                 <div className="post__header">
                     <img src={post?.user.avatar} alt="avatar" className="post__avatar" />
                     <div className="post__info">
-                        <h3 className="post__username">{post?.user.username} <img src="/images/3.bp.blogspot.png" className='user__verified'></img></h3>
+                        <h3 className="post__username">{post?.user.username} <img src={verifiedIcon} className='user__verified'></img></h3>
                         <p className="post__date">{timeStamp}</p>
                     </div>
                 </div>

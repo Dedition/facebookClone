@@ -2,6 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import './Header.css';
+import fblogo from '../../images/fblogopng.png';
 
 
 
@@ -18,7 +19,7 @@ function Header() {
     return (
         <div className="splash__header">
             <div className="splash__header__left">
-                <img src="/images/fblogopng.png" alt="logo" className='fb__logo' />
+                <img src={fblogo} alt="logo" className='fb__logo' />
 
                 {/* <div className="splash__header__input">
                     <i className="fa-solid fa-magnifying-glass"></i>
