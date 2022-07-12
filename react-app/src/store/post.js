@@ -32,6 +32,13 @@ export const createPost = (data) => async (dispatch) => {
     if (response.ok) {
         const newPost = await response.json();
         dispatch(addPost(newPost));
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
     }
 };
 
