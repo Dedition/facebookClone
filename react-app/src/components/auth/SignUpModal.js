@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Modal } from "../../context/Modal";
 import SignUpForm from "./SignUpForm";
+import { SignModal } from '../../context/SignupModal';
 
 function SignUpModal() {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,9 +9,9 @@ function SignUpModal() {
         <div>
             <button className="create__button" onClick={() => setIsOpen(true)}>Create new account</button>
             {isOpen && (
-                <Modal onClose={() => setIsOpen(false)} >
+                <SignModal onClose={() => setIsOpen(false)} >
                     <SignUpForm isOpen={isOpen} setIsOpen={setIsOpen} />
-                </Modal>
+                </SignModal>
             )}
         </div>
     )
