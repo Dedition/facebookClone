@@ -1,8 +1,8 @@
 //*                         React
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-// import { DateTime } from 'luxon';
-import moment from 'moment';
+import { DateTime } from 'luxon';
+// import moment from 'moment';
 
 //*                         Store
 import { getPosts } from '../../store/post';
@@ -37,14 +37,14 @@ function SinglePost({ post }) {
     }, [dispatch]);
 
     function timeSince(time) {
-        const now = moment();
-        const then = moment(time);
-        const diff = now.diff(then, 'minutes');
+        // const now = moment();
+        // const then = moment(time);
+        // const diff = now.diff(then, 'minutes');
 
-        // let now = DateTime.now();
-        // const ISOString = new Date(time).toISOString();
-        // const then = DateTime.fromISO(ISOString);
-        // let diff = now.diff(then).toObject().milliseconds;
+        let now = DateTime.now();
+        const ISOString = new Date(time).toISOString();
+        const then = DateTime.fromISO(ISOString);
+        let diff = now.diff(then).toObject().milliseconds;
         if (diff < 1000) return "Just now";
         if (diff < 60000) return `${Math.floor(diff / 1000)} seconds ago`;
         if (diff < 120000) return `${Math.floor(diff / 60000)} minute ago`;
