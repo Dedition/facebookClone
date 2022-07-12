@@ -10,6 +10,7 @@ const SignUpForm = ({ setIsOpen }) => {
   const history = useHistory();
 
 
+
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -79,6 +80,7 @@ const SignUpForm = ({ setIsOpen }) => {
     if (data?.includes("email : Email address is already in use.")) {
       err.push('Email: Email is already in use')
     }
+    setIsOpen(false);
     setErrors(err);
   }
 
@@ -120,7 +122,7 @@ const SignUpForm = ({ setIsOpen }) => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
