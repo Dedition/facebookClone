@@ -8,7 +8,7 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <img src="/images/cdn.onlinewebfonts.png" alt="logout" className="logout-button" onClick={onLogout} />;
 };
 
 export default LogoutButton;
