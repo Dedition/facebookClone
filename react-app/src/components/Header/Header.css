@@ -106,3 +106,18 @@ i:hover {
     height: 60px;
     margin: 20px;
 }
+
+.logout-button {
+    background-color: #2e81f446;
+    height: 50px;
+    width: 50px;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #2e81f4;
+}
