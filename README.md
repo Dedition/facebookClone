@@ -21,6 +21,11 @@ Facebook is a website for users to post, upload and browse posts, comments and i
 Try at the live site: [Facebook-Cap](https://facebook-cap.herokuapp.com/)
 
 ## Splash Page
+<img width="842" alt="Screen Shot 2022-07-13 at 11 44 56" src="https://user-images.githubusercontent.com/87998262/178775544-a2e015e9-b132-4a75-b969-16efb444fd9d.png">
+
+## Home page
+<img width="841" alt="Screen Shot 2022-07-13 at 11 46 12" src="https://user-images.githubusercontent.com/87998262/178775828-537f2607-5563-426d-b306-23740b7e59c0.png">
+
 
 ## Getting started
 
