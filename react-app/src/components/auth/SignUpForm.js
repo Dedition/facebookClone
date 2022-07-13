@@ -80,7 +80,7 @@ const SignUpForm = ({ setIsOpen }) => {
     if (data?.includes("email : Email address is already in use.")) {
       err.push('Email: Email is already in use')
     }
-    setIsOpen(false);
+    // setIsOpen(false);
     setErrors(err);
   }
 
