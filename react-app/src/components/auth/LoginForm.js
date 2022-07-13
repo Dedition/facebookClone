@@ -23,7 +23,7 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(['Sorry! Email or password is incorrect']);
     }
 
     if (email === '' || password === '') {
