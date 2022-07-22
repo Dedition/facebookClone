@@ -16,13 +16,13 @@ const CLEAN_FRIENDS = "FRIEND/CLEAN_FRIENDS";
 // TODO                                 Action Creators
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-const getFriends = (friends) => ({ type: GET_FRIENDS, payload });
-const getAllSentFriends = (friends) => ({ type: GET_ALL_SENT_FRIENDS, payload });
-const getAllReceivedFriends = (friends) => ({ type: GET_ALL_RECEIVED_FRIENDS, payload });
-const addFriendRequest = (friend) => ({ type: ADD_FRIEND_REQUEST, payload });
-const acceptFriendRequest = (friend) => ({ type: ACCEPT_FRIEND_REQUEST, payload });
-const cancelFriendRequest = (friend) => ({ type: CANCEL_FRIEND_REQUEST, payload });
-const removeFriend = (friend) => ({ type: REMOVE_FRIEND, payload });
+const getFriends = (payload) => ({ type: GET_FRIENDS, payload });
+const getAllSentFriends = (payload) => ({ type: GET_ALL_SENT_FRIENDS, payload });
+const getAllReceivedFriends = (payload) => ({ type: GET_ALL_RECEIVED_FRIENDS, payload });
+const addFriendRequest = (payload) => ({ type: ADD_FRIEND_REQUEST, payload });
+const acceptFriendRequest = (payload) => ({ type: ACCEPT_FRIEND_REQUEST, payload });
+const cancelFriendRequest = (payload) => ({ type: CANCEL_FRIEND_REQUEST, payload });
+const removeFriend = (payload) => ({ type: REMOVE_FRIEND, payload });
 const cleanFriends = () => ({ type: CLEAN_FRIENDS });
 
 
