@@ -135,7 +135,7 @@ const initialState = {
 const friendReducer = (state = initialState, action) => {
     const newState = { ...state };
     switch (action.type) {
-        case GET_ALL_FRIENDS:
+        case GET_FRIENDS:
             const acceptedSentFQ = action.payload.Accepted_SFQ;
             const acceptedReceivedFQ = action.payload.Accepted_RFQ;
             acceptedSentFQ.forEach((friend) => {
