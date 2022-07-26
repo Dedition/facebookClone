@@ -11,10 +11,10 @@ class Friend(db.Model):
     status = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-    sender_id = db.Column("User", foreign_keys=[
-                          user_a], nullable=False, backref="sender")
-    receiver_id = db.Column("User", foreign_keys=[
-                            user_b], nullable=False, backref="receiver")
+    sender_id = db.relationship("User", foreign_keys=[
+        user_a], backref="sender")
+    receiver_id = db.relationship("User", foreign_keys=[
+        user_b], backref="receiver")
 
     def to_dict(self):
         return {
