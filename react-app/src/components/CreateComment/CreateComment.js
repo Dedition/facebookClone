@@ -23,7 +23,7 @@ const CreateComment = ({ post }) => {
             post_id: post.id
         };
 
-        const response = await dispatch(createComment(payload));
+        await dispatch(createComment(payload));
         setContent('');
     }
 

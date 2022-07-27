@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { months, years } from './utils';
 import moment from 'moment';
 
-const SignUpForm = ({ setIsOpen }) => {
+const SignUpForm = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
 
 
@@ -16,7 +15,6 @@ const SignUpForm = ({ setIsOpen }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 

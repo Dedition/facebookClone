@@ -22,8 +22,8 @@ const getAllReceivedFriends = (payload) => ({ type: GET_ALL_RECEIVED_FRIENDS, pa
 const addFriendRequest = (payload) => ({ type: ADD_FRIEND_REQUEST, payload });
 const acceptFriendRequest = (payload) => ({ type: ACCEPT_FRIEND_REQUEST, payload });
 const cancelFriendRequest = (payload) => ({ type: CANCEL_FRIEND_REQUEST, payload });
-const removeFriend = (payload) => ({ type: REMOVE_FRIEND, payload });
-const cleanFriends = () => ({ type: CLEAN_FRIENDS });
+export const cleanFriends = () => ({ type: CLEAN_FRIENDS });
+// export const removeFriend = (payload) => ({ type: REMOVE_FRIEND, payload });
 
 
 // *    ——————————————————————————————————————————————————————————————————————————————————
@@ -58,8 +58,8 @@ export const createFriendRequest = (friend) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const getAllFriends = (friend) => async (dispatch) => {
-    const response = await fetch(`/api/friends/${friend.userId}`);
-
+    const response = await fetch(`/api/friends/${friend.id}`);
+    // console.log(friend.id);
     if (response.ok) {
         const allFriends = await response.json();
         dispatch(getFriends(allFriends));
@@ -67,7 +67,7 @@ export const getAllFriends = (friend) => async (dispatch) => {
     }
 }
 
-export const gtAllSentFQ = (friend) => async (dispatch) => {
+export const getAllSentFQ = (friend) => async (dispatch) => {
     const response = await fetch(`/api/friends/sent/${friend.userId}`);
 
     if (response.ok) {

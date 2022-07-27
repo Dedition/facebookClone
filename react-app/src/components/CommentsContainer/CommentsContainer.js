@@ -1,11 +1,12 @@
 //*                         React
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
+//eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux';
-import { DateTime } from 'luxon';
+// import { DateTime } from 'luxon';
 import moment from 'moment';
 
 //*                         Store
-import { getComments } from '../../store/comment';
+// import { getComments } from '../../store/comment';
 
 //*                     Files & Components
 import './CommentsContainer.css';
@@ -15,7 +16,7 @@ import verifiedIcon from '../../images/3.bp.blogspot.png';
 
 
 const CommentsContainer = ({ post, user }) => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     let comments = useSelector(state => state.comments);
     comments = Object?.values(comments);
     const posts = comments?.filter(comment => comment.post_id === post.id);
@@ -42,6 +43,7 @@ const CommentsContainer = ({ post, user }) => {
                             <div className="home__comment__user__text">
                                 {comment.user.username} <img
                                     src={verifiedIcon}
+                                    alt="verifiedIcon"
                                     className='user__verified'>
                                 </img>
                             </div>
