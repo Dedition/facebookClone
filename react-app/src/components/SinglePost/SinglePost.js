@@ -17,8 +17,8 @@ import verifiedIcon from '../../images/3.bp.blogspot.png';
 
 
 function SinglePost({ post }) {
-    const [timeStamp, setTimeStamp] = useState(timeSince(post?.created_at));
     const dispatch = useDispatch();
+    const [timeStamp, setTimeStamp] = useState(timeSince(post?.created_at));
 
     const user = useSelector(state => state.session.user);
 
@@ -46,6 +46,7 @@ function SinglePost({ post }) {
         const then = DateTime.fromISO(ISOString);
         let diff = now.diff(then).toObject().milliseconds;
         if (diff < 1000) return "Just now";
+        if (diff < 2000) return `${Math.floor(diff / 1000)} second ago`;
         if (diff < 60000) return `${Math.floor(diff / 1000)} seconds ago`;
         if (diff < 120000) return `${Math.floor(diff / 60000)} minute ago`;
         if (diff < 3600000) return `${Math.floor(diff / 60000)} minutes ago`;

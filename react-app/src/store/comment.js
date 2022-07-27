@@ -2,8 +2,6 @@
 // TODO                                     Action
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
-import { bindActionCreators } from "redux";
-
 const CREATE_COMMENT = "COMMENT/CREATE";
 const LOAD_COMMENTS = "COMMENT/LOAD";
 const UPDATE_COMMENT = "COMMENT/UPDATE";

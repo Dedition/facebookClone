@@ -23,38 +23,6 @@ const CommentsContainer = ({ post, user }) => {
     // const [timeStamp, setTimeStamp] = useState(timeSince(comments?.created_at));
 
 
-
-    function timeSince(time) {
-        // const now = moment();
-        // const then = moment(time);
-        // const diff = now.diff(then, 'minutes');
-
-        let now = DateTime.now();
-        const ISOString = new Date(time).toISOString();
-        const then = DateTime.fromISO(ISOString);
-        let diff = now.diff(then).toObject().milliseconds;
-        if (diff < 1000) return "Just now";
-        if (diff < 60000) return `${Math.floor(diff / 1000)} seconds ago`;
-        if (diff < 120000) return `${Math.floor(diff / 60000)} minute ago`;
-        if (diff < 3600000) return `${Math.floor(diff / 60000)} minutes ago`;
-        if (diff < 7200000) return `${Math.floor(diff / 3600000)} hour ago`;
-        if (diff < 86400000) return `${Math.floor(diff / 3600000)} hours ago`;
-        if (diff < 172800000) return `${Math.floor(diff / 86400000)} day ago`;
-        if (diff < 604800000) return `${Math.floor(diff / 86400000)} days ago`;
-        if (diff < 1209600000) return `${Math.floor(diff / 604800000)} week ago`;
-        if (diff < 2629800000) return `${Math.floor(diff / 604800000)} weeks ago`;
-        if (diff < 5259490000) return `${Math.floor(diff / 2629800000)} month ago`;
-        if (diff < 31557600000) return `${Math.floor(diff / 2629800000)} months ago`;
-        if (diff < 31557600000) return `${Math.floor(diff / 31557600000)} year ago`;
-        if (diff < 31557600000) return `${Math.floor(diff / 31557600000)} years ago`;
-        return then.format("MMMM Do YYYY, h:mm:ss a");
-    };
-
-    useEffect(() => {
-        dispatch(getComments());
-    }, [dispatch]);
-
-
     return (
         <div className="comments-container">
             {posts?.map(comment => (
