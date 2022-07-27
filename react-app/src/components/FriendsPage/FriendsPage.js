@@ -14,6 +14,8 @@ import {
     cancelFQ
 } from '../../store/friend';
 
+import { getAllUsers, cleanUsers } from '../../store/users';
+
 function FriendsPage() {
     const dispatch = useDispatch();
 
@@ -25,6 +27,7 @@ function FriendsPage() {
 
     useEffect(() => {
         dispatch(getAllFriends(sessionUser));
+        dispatch(getAllUsers());
     }, [dispatch, sessionUser]);
 
     return (

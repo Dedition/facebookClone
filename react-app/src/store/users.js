@@ -22,7 +22,7 @@ export const cleanUsers = () => ({ type: CLEAN_USERS });
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const getAllUsers = () => async (dispatch) => {
-    const response = await fetch("/api/users");
+    const response = await fetch("/api/users/");
 
     if (response.ok) {
         const users = await response.json();
@@ -42,7 +42,7 @@ const usersReducer = (state = initialState, action) => {
     const newState = { ...state };
     switch (action.type) {
         case GET_ALL_USERS:
-            const users = action.payload;
+            const users = action.payload.users;
             users.forEach((user) => {
                 newState[user.id] = user;
             });
