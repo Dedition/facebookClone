@@ -1,11 +1,12 @@
 //*                         React
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 //*                     Files & Components
 import CommentsContainer from '../CommentsContainer/CommentsContainer';
 import "./Comments.css";
 
 const Comments = ({ post, user }) => {
+    //eslint-disable-next-line
     const [isOpen, setIsOpen] = useState(false);
 
 

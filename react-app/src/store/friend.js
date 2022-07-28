@@ -22,8 +22,8 @@ const getAllReceivedFriends = (payload) => ({ type: GET_ALL_RECEIVED_FRIENDS, pa
 const addFriendRequest = (payload) => ({ type: ADD_FRIEND_REQUEST, payload });
 const acceptFriendRequest = (payload) => ({ type: ACCEPT_FRIEND_REQUEST, payload });
 const cancelFriendRequest = (payload) => ({ type: CANCEL_FRIEND_REQUEST, payload });
-const removeFriend = (payload) => ({ type: REMOVE_FRIEND, payload });
-const cleanFriends = () => ({ type: CLEAN_FRIENDS });
+export const cleanFriends = () => ({ type: CLEAN_FRIENDS });
+// export const removeFriend = (payload) => ({ type: REMOVE_FRIEND, payload });
 
 
 // *    ——————————————————————————————————————————————————————————————————————————————————
@@ -58,8 +58,8 @@ export const createFriendRequest = (friend) => async (dispatch) => {
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const getAllFriends = (friend) => async (dispatch) => {
-    const response = await fetch(`/api/friends/${friend.userId}`);
-
+    const response = await fetch(`/api/friends/${friend.id}`);
+    // console.log(friend.id);
     if (response.ok) {
         const allFriends = await response.json();
         dispatch(getFriends(allFriends));
@@ -67,7 +67,7 @@ export const getAllFriends = (friend) => async (dispatch) => {
     }
 }
 
-export const gtAllSentFQ = (friend) => async (dispatch) => {
+export const getAllSentFQ = (friend) => async (dispatch) => {
     const response = await fetch(`/api/friends/sent/${friend.userId}`);
 
     if (response.ok) {
@@ -128,8 +128,8 @@ export const cancelFQ = (friend) => async (dispatch) => {
 
 const initialState = {
     friends: {},
-    allSentFriends: {},
-    allReceivedFriends: {},
+    sentFQ: {},
+    receivedFQ: {},
 }
 
 const friendReducer = (state = initialState, action) => {
@@ -150,31 +150,31 @@ const friendReducer = (state = initialState, action) => {
         case GET_ALL_SENT_FRIENDS:
             const sentFQ = action.payload.Sent_FQ;
             sentFQ.forEach((friend) => {
-                newState.allSentFriends[friend.id] = friend;
+                newState.sentFQ[friend.id] = friend;
             }
             );
             return newState;
         case GET_ALL_RECEIVED_FRIENDS:
             const receivedFQ = action.payload.Received_FQ;
             receivedFQ.forEach((pendingFQ) => {
-                newState.allReceivedFriends[pendingFQ.id] = pendingFQ;
+                newState.receivedFQ[pendingFQ.id] = pendingFQ;
             }
             );
             return newState;
         case ADD_FRIEND_REQUEST:
             const createdFQ = action.payload;
-            newState.allSentFriends[createdFQ.id] = createdFQ;
+            newState.sentFQ[createdFQ.id] = createdFQ;
             return newState;
         case ACCEPT_FRIEND_REQUEST:
             const acceptedFQ = action.payload;
             newState.friends[acceptedFQ.id] = acceptedFQ;
-            delete newState.allSentFriends[acceptedFQ.id];
+            delete newState.sentFQ[acceptedFQ.id];
             return newState;
         case CANCEL_FRIEND_REQUEST:
             const canceledFQ = action.payload;
             delete newState.friends[canceledFQ.id];
-            delete newState.allSentFriends[canceledFQ.id];
-            delete newState.allReceivedFriends[canceledFQ.id];
+            delete newState.sentFQ[canceledFQ.id];
+            delete newState.receivedFQ[canceledFQ.id];
             return newState;
         case REMOVE_FRIEND:
             const removedFQ = action.payload;
@@ -182,8 +182,8 @@ const friendReducer = (state = initialState, action) => {
             return newState;
         case CLEAN_FRIENDS:
             newState.friends = {};
-            newState.allSentFriends = {};
-            newState.allReceivedFriends = {};
+            newState.sentFQ = {};
+            newState.receivedFQ = {};
             return newState;
         default:
             return state;

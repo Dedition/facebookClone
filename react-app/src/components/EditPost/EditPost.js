@@ -12,8 +12,6 @@ function EditPost({ post, isOpen }) {
     const [errors, setErrors] = useState([]);
 
     const user = useSelector(state => state.session.user);
-    let posts = useSelector(state => state.posts);
-    posts = Object.values(posts);
 
 
 
@@ -26,7 +24,7 @@ function EditPost({ post, isOpen }) {
             content,
         };
 
-        const data = await dispatch(updatePostById(payload));
+        await dispatch(updatePostById(payload));
         setContent("");
         isOpen(false);
     }

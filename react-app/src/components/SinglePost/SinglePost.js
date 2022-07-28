@@ -23,14 +23,14 @@ function SinglePost({ post }) {
     const user = useSelector(state => state.session.user);
 
 
-    useEffect(() => {
-        const initialSetter = setInterval(() => {
-            setTimeStamp(timeSince(post?.created_at));
+    // useEffect(() => {
+    //     const initialSetter = setInterval(() => {
+    //         setTimeStamp(timeSince(post?.created_at));
 
-            return () => clearInterval(initialSetter)
+    //         return () => clearInterval(initialSetter)
 
-        }, 1000)
-    }, [timeStamp])
+    //     }, 1000)
+    // }, [timeStamp])
 
     useEffect(() => {
         dispatch(getPosts());
@@ -71,7 +71,7 @@ function SinglePost({ post }) {
                 <div className="post__header">
                     <img src={post?.user.avatar} alt="avatar" className="post__avatar" />
                     <div className="post__info">
-                        <h3 className="post__username">{post?.user.username} <img src={verifiedIcon} className='user__verified'></img></h3>
+                        <h3 className="post__username">{post?.user.username} <img src={verifiedIcon} alt="user_verified" className='user__verified'></img></h3>
                         <p className="post__date">{timeStamp}</p>
                     </div>
                 </div>

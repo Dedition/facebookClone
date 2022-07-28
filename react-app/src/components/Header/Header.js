@@ -1,5 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import './Header.css';
 import fblogo from '../../images/fblogopng.png';
@@ -7,13 +6,13 @@ import fblogo from '../../images/fblogopng.png';
 
 
 function Header() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
 
 
 
 
-    const [name, setName] = useState('');
+    // const [name, setName] = useState('');
 
 
     return (

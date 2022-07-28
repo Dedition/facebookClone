@@ -2,6 +2,9 @@ from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import User
 
+from app.api.aws_s3_bucket import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
+
 user_routes = Blueprint('users', __name__)
 
 

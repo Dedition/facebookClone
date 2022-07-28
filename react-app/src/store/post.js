@@ -84,7 +84,7 @@ export const deletePostById = (postId) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const previousPost = await response.json();
+        await response.json();
         dispatch(removePost(postId));
     }
 };

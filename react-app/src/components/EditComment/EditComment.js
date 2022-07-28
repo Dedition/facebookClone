@@ -1,20 +1,15 @@
 //*                         React
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //*                         Store
 import { editComment } from '../../store/comment';
 
 
-const EditComment = ({ comment, post, isOpen }) => {
+const EditComment = ({ comment, isOpen }) => {
     const dispatch = useDispatch();
     const [content, setContent] = useState(comment.content);
     const [errors, setErrors] = useState([]);
-
-
-    const handleClick = () => {
-        isOpen(!isOpen);
-    }
 
     const handleChange = (e) => {
         setContent(e.target.value);
