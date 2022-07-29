@@ -23,14 +23,14 @@ function SinglePost({ post }) {
     const user = useSelector(state => state.session.user);
 
 
-    // useEffect(() => {
-    //     const initialSetter = setInterval(() => {
-    //         setTimeStamp(timeSince(post?.created_at));
+    useEffect(() => {
+        const initialSetter = setInterval(() => {
+            setTimeStamp(timeSince(post?.created_at));
 
-    //         return () => clearInterval(initialSetter)
+            return () => clearInterval(initialSetter)
 
-    //     }, 1000)
-    // }, [timeStamp])
+        }, 1000)
+    }, [timeStamp])
 
     useEffect(() => {
         dispatch(getPosts());
