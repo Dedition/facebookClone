@@ -22,27 +22,35 @@ function FriendsPage() {
     const [errors, setErrors] = useState([]);
 
     const sessionUser = useSelector(state => state.session.user);
+
     let strangers = useSelector(state => state.users);
     strangers = Object.values(strangers);
+
     let friends = useSelector(state => state.friends.friends);
     friends = Object.values(friends);
+
+    console.log(friends);
+
     let sentFQ = useSelector(state => state.friends.sentFQ);
     sentFQ = Object.values(sentFQ);
+
+    console.log(sentFQ);
+
     let receivedFQ = useSelector(state => state.friends.receivedFQ);
     receivedFQ = Object.values(receivedFQ);
-    // const state = useSelector(state => state);
+
+    console.log(receivedFQ);
 
     useEffect(() => {
         dispatch(getAllFriends(sessionUser));
         dispatch(getAllUsers());
+        dispatch(getAllSentFQ(sessionUser));
+        dispatch(getAllReceivedFQ(sessionUser));
     }, [dispatch, sessionUser.id]);
 
     const handleAcceptedRQ = async (e, friend) => {
         e.preventDefault();
         const response = await dispatch(acceptFQ(friend));
-        // if (response.error) {
-        //     setErrors(response.error);
-        // }
     }
 
     const handleCancelledRQ = async (e, friend) => {
@@ -56,11 +64,9 @@ function FriendsPage() {
     const handleCreateFriendRequest = async (e, friend) => {
         e.preventDefault();
         const response = await dispatch(createFriendRequest(friend));
-        // if (response.error) {
-        //     setErrors(response.error);
-        // }
     }
 
+    console.log(strangers.map(user => user));
 
     return (
         <div className="friends-page">

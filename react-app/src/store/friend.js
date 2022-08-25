@@ -35,12 +35,11 @@ export const cleanFriends = () => ({ type: CLEAN_FRIENDS });
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 
 export const createFriendRequest = (friend) => async (dispatch) => {
-    const response = await fetch(`/api/friends/${friend.user_b}`, {
+    const response = await fetch(`/api/friends/${friend.id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(friend),
     });
-
     if (response.ok) {
         const newFriendReq = await response.json();
 
@@ -50,7 +49,6 @@ export const createFriendRequest = (friend) => async (dispatch) => {
         return newFriendReq;
     }
 }
-
 
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————

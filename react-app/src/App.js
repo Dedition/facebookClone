@@ -29,6 +29,7 @@ function App() {
         <ProtectedRoute exact path="/home" component={LandingPage} />
 
         <ProtectedRoute exact path="/friends" component={FriendsPage} />
+
         <Route path="/" component={SignupPage} />
       </Switch>
     </BrowserRouter>
