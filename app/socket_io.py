@@ -1,80 +1,127 @@
 from flask_socketio import SocketIO, emit, join_room, leave_room
-from .models import db, User
-import os
+from app.models import db, User
 
-if os.environ.get("FLASK_ENV") == "production":
-    origins = [
-        "http://facebook-cap.herokuapp.com",
-        "https://facebook-cap.herokuapp.com"
-    ]
-else:
-    origins = "*"
-
-# create your SocketIO instance
-socketio = SocketIO(cors_allowed_origins=origins)
+socketio = SocketIO(cors_allowed_origins="*")
 
 
-@socketio.on("chat")
-def handle_chat(data):
-    emit("chat", data, broadcast=True)
+@socketio.on('disconnect')
+def test_disconnect():
+    print('Client disconnected')
 
 
 @socketio.on("online")
-def handle_online(data):
-    user = User.query.filter_by(id=data["user_id"]).first()
+def turn_online(data):
+    user = User.query.get(data["id"])
     user.online = True
+    db.session.add(user)
     db.session.commit()
-    emit("online", data, broadcast=True)
+    emit("online", broadcast=True)
 
 
 @socketio.on("offline")
-def handle_offline(data):
-    user = User.query.filter_by(id=data["user_id"]).first()
+def turn_online(data):
+    user = User.query.get(data["id"])
     user.online = False
+    db.session.add(user)
     db.session.commit()
-    emit("offline", data, broadcast=True)
+    emit("offline", broadcast=True)
 
 
-@socketio.on("join")
-def handle_join(data):
-    join_room(data["room"])
-    emit("join", data, broadcast=True)
+@socketio.on('join')
+def on_join(data):
+    room = data['roomUrl']
+    join_room(room)
 
 
-@socketio.on("leave")
-def handle_leave(data):
-    leave_room(data["room"])
-    emit("leave", data, broadcast=True)
+@socketio.on('leave')
+def on_leave(data):
+    room = data['roomUrl']
+    leave_room(room)
 
 
-@socketio.on("typing")
-def handle_typing(data):
-    emit("typing", data, broadcast=True)
+@socketio.on('updatedProfile')
+def updated_profile(data):
+    room = data['roomUrl']
+    emit("updatedProfile", data, to=room)
 
 
-@socketio.on("stop_typing")
-def handle_stop_typing(data):
-    emit("stop_typing", data, broadcast=True)
+@socketio.on('updatedProfileHome')
+def updated_profile_home(data):
+    emit("updatedProfileHome", data, broadcast=True)
 
 
-@socketio.on("disconnect")
-def handle_disconnect():
-    print("Client disconnected")
-    emit("disconnect", broadcast=True)
+@socketio.on('updatedBanner')
+def updated_banner(data):
+    room = data['roomUrl']
+    emit("updatedBanner", data, to=room)
 
 
-@socketio.on("connect")
-def handle_connect():
-    print("Client connected")
-    emit("connect", broadcast=True)
+@socketio.on('createPost')
+def create_post(data):
+    room = data['roomUrl']
+    emit("createPost", data, to=room)
 
 
-@socketio.on("error")
-def handle_error(data):
-    print("Client error")
-    emit("error", data, broadcast=True)
+@socketio.on('createPostHome')
+def create_post_home(data):
+    emit("createPostHome", data, broadcast=True)
+
+
+@socketio.on('editPost')
+def edit_post(data):
+    room = data['roomUrl']
+    emit("editPost", data, to=room)
+
+
+@socketio.on('editPostHome')
+def edit_post_home(data):
+    emit("editPostHome", data, broadcast=True)
+
+
+@socketio.on('deletePost')
+def delete_post(data):
+    room = data['roomUrl']
+    emit("deletePost", data, to=room)
+
+
+@socketio.on('deletePostHome')
+def delete_post_home(data):
+    emit("deletePostHome", data, broadcast=True)
+
+
+@socketio.on('createComment')
+def create_comment(data):
+    room = data['roomUrl']
+    emit("createComment", data, to=room)
+
+
+@socketio.on('createCommentHome')
+def create_comment_home(data):
+    emit("createCommentHome", data, broadcast=True)
+
+
+@socketio.on('editComment')
+def edit_comment(data):
+    room = data['roomUrl']
+    emit("editComment", data, to=room)
+
+
+@socketio.on('editCommentHome')
+def edit_comment_home(data):
+    emit("editCommentHome", data, broadcast=True)
+
+
+@socketio.on('deleteComment')
+def delete_comment(data):
+    room = data['roomUrl']
+    emit("deleteComment", data, to=room)
+
+
+@socketio.on('deleteCommentHome')
+def delete_comment_home(data):
+    emit("deleteCommentHome", data, broadcast=True)
 
 
 @socketio.on("friends")
-def handle_friends(data):
+def friends_button(data):
     emit("friends", data, broadcast=True)
