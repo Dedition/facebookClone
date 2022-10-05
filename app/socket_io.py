@@ -56,10 +56,16 @@ def updated_banner(data):
     emit("updatedBanner", data, to=room)
 
 
-@socketio.on('createPost')
+@socketio.on('newPost')
 def create_post(data):
     room = data['roomUrl']
     emit("createPost", data, to=room)
+
+
+@socketio.on('newNotification')
+def new_notification(data):
+    room = data['roomUrl']
+    emit("newNotification", data, to=room)
 
 
 @socketio.on('createPostHome')

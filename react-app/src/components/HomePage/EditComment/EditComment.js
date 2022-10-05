@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 //*                         Store
-import { editComment } from '../../store/comment';
+import { editComment } from '../../../store/comment';
 
 
 const EditComment = ({ comment, isOpen }) => {

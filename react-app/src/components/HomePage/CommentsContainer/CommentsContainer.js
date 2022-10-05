@@ -12,7 +12,7 @@ import moment from 'moment';
 import './CommentsContainer.css';
 import EditCommentForm from '../EditComment/EditCommentForm';
 import DeleteCommentForm from '../DeleteComment/DeleteCommentForm';
-import verifiedIcon from '../../images/3.bp.blogspot.png';
+import verifiedIcon from '../../../images/3.bp.blogspot.png';
 
 
 const CommentsContainer = ({ post, user }) => {

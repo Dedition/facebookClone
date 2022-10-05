@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 //*                     Files & Components
 import EditComment from './EditComment';
-import { Modal } from '../../context/Modal';
+import { Modal } from '../../../context/Modal';
 
 const EditCommentForm = ({ comment, post }) => {
     const [isOpen, setIsOpen] = useState(false);

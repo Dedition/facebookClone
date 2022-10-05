@@ -62,13 +62,6 @@ def create_friend_request(id):
             db.session.commit()
             return friend.to_dict(), 201
 
-        # print(friend_received, "FRIEND_RECEIVED"*10)
-        # print(friend_sent, "FRIEND_SENT"*10)
-        # print(friend, 'hello' * 10)
-        # friend = Friend(user_a=current_user.id, user_b=id)
-        # db.session.add(friend)
-        # db.session.commit()
-
     return form.errors, 400
 
 

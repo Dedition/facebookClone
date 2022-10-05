@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //*                         Store
-import { createComment } from '../../store/comment';
+import { createComment } from '../../../store/comment';
 
 const CreateComment = ({ post }) => {
     const dispatch = useDispatch();

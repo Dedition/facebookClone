@@ -5,14 +5,15 @@ import { DateTime } from 'luxon';
 // import moment from 'moment';
 
 //*                         Store
-import { getPosts } from '../../store/post';
+import { getPosts } from '../../../store/post';
 
 //*                     Files & Components
 import EditPostForm from '../EditPost/EditPostForm'
-import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
+// import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
+import DeleteButtonForm from '../DeleteButtonForm/DeleteButton';
 import Comments from '../Comments/Comments';
 import CreateComment from '../CreateComment/CreateComment';
-import verifiedIcon from '../../images/3.bp.blogspot.png';
+import verifiedIcon from '../../../images/3.bp.blogspot.png';
 
 
 
