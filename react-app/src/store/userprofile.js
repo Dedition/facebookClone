@@ -29,5 +29,15 @@ const editProfile = (payload) => ({
 // *    ——————————————————————————————————————————————————————————————————————————————————
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
-// TODO                                 CREATE
+// TODO                                 READ
 // TODO ——————————————————————————————————————————————————————————————————————————————————
+
+export const getUserProfile = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/users/${payload.userId}`);
+
+    if (response.ok) {
+        const user = await response.json();
+        dispatch(loadUserProfile(user));
+    }
+    return response;
+};
