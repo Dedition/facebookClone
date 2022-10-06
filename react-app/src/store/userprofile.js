@@ -41,3 +41,36 @@ export const getUserProfile = (payload) => async (dispatch) => {
     }
     return response;
 };
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 UPDATE
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+export const editUserProfile = (payload) => async (dispatch) => {
+    const formData = new FormData();
+    formData.append("bio", payload.bio);
+    formData.append("image", payload.avatar_url);
+    const response = await fetch(`/api/users/profile/${payload.userId}`, {
+        method: "PUT",
+        body: formData,
+    });
+
+    if (response.ok) {
+        const editedUser = await response.json();
+        dispatch(editProfile(editedUser));
+    }
+};
+
+export const editBannerImage = (payload) => async (dispatch) => {
+    const formData = new FormData();
+    formData.append("image", payload.banner_url);
+    const response = await fetch(`/api/users/banner/${payload.userId}`, {
+        method: "PUT",
+        body: formData,
+    });
+
+    if (response.ok) {
+        const editedUser = await response.json();
+        dispatch(editProfile(editedUser));
+    }
+};
