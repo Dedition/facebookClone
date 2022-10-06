@@ -7,7 +7,7 @@ import { getPosts } from "../../store/post";
 
 //*                     Files & Components
 import "./AllPosts.css";
-import SinglePost from "../SinglePost/SinglePost";
+import SinglePost from "../HomePage/SinglePost/SinglePost";
 
 function AllPosts() {
     const dispatch = useDispatch();

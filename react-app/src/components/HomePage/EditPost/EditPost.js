@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //*                         Store
-import { updatePostById } from "../../store/post";
+import { updatePostById } from "../../../store/post";
 import "./EditPost.css";
 
 function EditPost({ post, isOpen }) {

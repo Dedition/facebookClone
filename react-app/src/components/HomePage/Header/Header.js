@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../../auth/LogoutButton';
 import './Header.css';
-import fblogo from '../../images/fblogopng.png';
+import fblogo from '../../../images/fblogopng.png';
 
 
 

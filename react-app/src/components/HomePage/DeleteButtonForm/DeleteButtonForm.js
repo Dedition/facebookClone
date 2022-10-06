@@ -3,7 +3,7 @@ import { useState } from "react";
 
 //*                     Files & Components
 import DeletePost from "./DeletePost/DeletePost";
-import { Modal } from '../../context/Modal';
+import { Modal } from '../../../context/Modal';
 
 const DeleteButton = ({ post }) => {
     const [isOpen, setIsOpen] = useState(false);

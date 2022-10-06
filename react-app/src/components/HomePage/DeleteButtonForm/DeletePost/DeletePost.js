@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 
 //*                         Store
-import { deletePostById } from "../../../store/post";
+import { deletePostById } from "../../../../store/post";
 
 const DeletePost = ({ post, isOpen }) => {
     const dispatch = useDispatch();

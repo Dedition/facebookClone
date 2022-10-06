@@ -10,7 +10,7 @@ import { getPosts } from '../../../store/post';
 //*                     Files & Components
 import EditPostForm from '../EditPost/EditPostForm'
 // import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
-import DeleteButtonForm from '../DeleteButtonForm/DeleteButton';
+import DeleteButtonForm from '../DeleteButtonForm/DeleteButtonForm';
 import Comments from '../Comments/Comments';
 import CreateComment from '../CreateComment/CreateComment';
 import verifiedIcon from '../../../images/3.bp.blogspot.png';

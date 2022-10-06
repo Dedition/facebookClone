@@ -1,6 +1,6 @@
 import AllPosts from "../AllPosts/AllPosts";
-import Header from "../Header/Header";
-import MainPost from "../MainPost/MainPost";
+import Header from "../HomePage/Header/Header";
+import MainPost from "../HomePage/MainPost/MainPost";
 
 const LandingPage = () => {
     return (
