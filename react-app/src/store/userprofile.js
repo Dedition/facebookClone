@@ -74,3 +74,29 @@ export const editBannerImage = (payload) => async (dispatch) => {
         dispatch(editProfile(editedUser));
     }
 };
+
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+// TODO                                 Reducer
+// TODO ——————————————————————————————————————————————————————————————————————————————————
+
+const initialState = {};
+
+const userProfileReducer = (state = initialState, action) => {
+    let newState;
+    switch (action.type) {
+        case GET_USER_PROFILE:
+            const userProfile = action.payload;
+            newState[userProfile.id] = userProfile;
+            return newState;
+        case EDIT_USER_PROFILE:
+            const editedUserProfile = action.payload;
+            newState[editedUserProfile.id] = editedUserProfile;
+            return newState;
+        case CLEAN_USER_PROFILE:
+            return {};
+        default:
+            return state;
+    }
+};
+
+export default userProfileReducer;
