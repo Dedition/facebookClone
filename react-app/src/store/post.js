@@ -6,6 +6,7 @@ const ADD = "POST/ADD";
 const LOAD = "POST/LOAD";
 const UPDATE = "POST/UPDATE";
 const REMOVE = "POST/REMOVE";
+const CLEAN_POST = "/api/CLEAN_POST";
 
 // TODO ——————————————————————————————————————————————————————————————————————————————————
 // TODO                                 Action Creators
@@ -15,6 +16,7 @@ const addPost = (post) => ({ type: ADD, post });
 const loadPosts = (posts) => ({ type: LOAD, posts });
 const updatePost = (post) => ({ type: UPDATE, post });
 const removePost = (postId) => ({ type: REMOVE, postId });
+export const cleanPost = () => ({ type: CLEAN_POST });
 
 // *    ——————————————————————————————————————————————————————————————————————————————————
 // *                                    Thunks
