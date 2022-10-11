@@ -88,4 +88,5 @@ function CreatePostForm({ socket, setShowModal }) {
                 </button>
             </form>
         </div>
+    );
 }
