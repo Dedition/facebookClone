@@ -10,3 +10,5 @@ import { getUserProfile, cleanUserProfile } from '../../store/userprofile';
 import { getPosts, cleanPost } from '../../store/post';
 
 import { getAllFriends, getAllSentFQ, getAllReceivedFQ, cleanFriends } from '../../store/friend';
+
+import { getAllUsers, cleanUsers } from '../../store/users';

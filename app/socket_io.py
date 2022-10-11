@@ -1,3 +1,4 @@
+from socket import socket
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from app.models import db, User
 
@@ -131,3 +132,8 @@ def delete_comment_home(data):
 @socketio.on("friends")
 def friends_button(data):
     emit("friends", data, broadcast=True)
+
+
+@socketio.on("unfriends")
+def unfriends_button(data):
+    emit("unfriends", data, broadcast=True)

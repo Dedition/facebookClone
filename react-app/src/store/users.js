@@ -13,6 +13,7 @@ const CLEAN_USERS = "USER/CLEAN_USERS";
 const getUsers = (payload) => ({ type: GET_ALL_USERS, payload });
 export const cleanUsers = () => ({ type: CLEAN_USERS });
 
+
 // *    ——————————————————————————————————————————————————————————————————————————————————
 // *                                    Thunks
 // *    ——————————————————————————————————————————————————————————————————————————————————
